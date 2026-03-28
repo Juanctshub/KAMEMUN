@@ -6,7 +6,7 @@ import { Award, Target, Quote, Mail, MapPin } from "lucide-react";
 
 export default function MembersSection() {
   return (
-    <section id="secretariado" className="relative w-full z-30 pb-32 pt-24 bg-brand-secondary overflow-hidden">
+    <section id="secretariado" className="relative w-full z-30 pb-20 md:pb-32 pt-16 md:pt-24 bg-brand-secondary overflow-hidden">
       {/* Background Decorative Element */}
       <div className="absolute top-0 right-0 w-[50%] h-[100%] bg-brand-primary/[0.02] -skew-x-12 transform translate-x-1/4 z-0 pointer-events-none" />
 
@@ -34,9 +34,9 @@ export default function MembersSection() {
           
           {/* COLUMNA IZQUIERDA: EL ROSTRO (EXTREMA LIMPIEZA) */}
           <div className="lg:col-span-6 flex justify-center lg:justify-start">
-            <div className="relative w-full max-w-[580px] aspect-[4/5.4] group perspective-[2000px]">
+            <div className="relative w-full max-w-[340px] md:max-w-[580px] aspect-[4/5.4] group perspective-[2000px] mx-auto">
               <motion.div 
-                className="w-full h-full relative transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-[0_50px_150px_rgba(0,0,0,0.8)] rounded-[3rem] cursor-pointer transform-gpu"
+                className="w-full h-full relative transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-[0_30px_80px_rgba(0,0,0,0.6)] md:shadow-[0_50px_150px_rgba(0,0,0,0.8)] rounded-[2rem] md:rounded-[3rem] cursor-pointer transform-gpu"
                 style={{ willChange: "transform" }}
               >
                 

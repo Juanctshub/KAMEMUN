@@ -37,7 +37,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
           </div>
 
           <div className="flex items-center gap-6">
-            <button className="hidden sm:block px-5 py-2 md:px-7 md:py-2.5 bg-brand-primary text-brand-secondary font-bold text-xs md:text-sm uppercase tracking-widest rounded-full hover:bg-brand-primary-light transition-all shadow-[0_0_15px_rgba(0,140,140,0.4)] hover:shadow-[0_0_25px_rgba(168,213,213,0.6)] transform hover:scale-105 active:scale-95">
+            <button className="px-4 py-2 md:px-7 md:py-2.5 bg-brand-primary text-brand-secondary font-bold text-[10px] md:text-sm uppercase tracking-widest rounded-full hover:bg-brand-primary-light transition-all shadow-[0_0_15px_rgba(0,140,140,0.4)] hover:shadow-[0_0_25px_rgba(168,213,213,0.6)] transform hover:scale-105 active:scale-95">
               Comités
             </button>
             <button 

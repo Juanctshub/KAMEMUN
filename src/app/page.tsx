@@ -34,7 +34,7 @@ export default function Home() {
             <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             
             {/* HERO SECTION */}
-            <div id="inicio" className="relative w-full min-h-screen flex flex-col overflow-hidden">
+            <div id="inicio" className="relative w-full min-h-[100svh] flex flex-col overflow-hidden">
               <HeroBackground />
               
               {/* Desktop: Hero3D is absolute positioned inside */}
@@ -42,7 +42,7 @@ export default function Home() {
                 <Hero3D />
               </div>
 
-              <section className="w-full flex-1 flex flex-col px-6 z-10 relative pt-24 md:pt-48 md:px-24 lg:px-32 pointer-events-none">
+              <section className="w-full flex-1 flex flex-col px-6 z-10 relative pt-28 md:pt-48 md:px-24 lg:px-32 pointer-events-none">
                 <div className="max-w-4xl pointer-events-auto text-center md:text-left flex flex-col items-center md:items-start">
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -97,7 +97,7 @@ export default function Home() {
                 </div>
 
                 {/* Mobile: Turtle rendered BELOW text, inside the content flow */}
-                <div className="md:hidden flex-1 flex items-end justify-center pb-8 pointer-events-none">
+                <div className="md:hidden flex-1 flex items-center justify-center py-10 pointer-events-none">
                   <Hero3D />
                 </div>
               </section>
