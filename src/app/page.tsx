@@ -9,6 +9,7 @@ import MembersSection from "@/components/MembersSection";
 import FooterCTA from "@/components/FooterCTA";
 import Navbar from "@/components/Navbar";
 import ComingSoon from "@/components/ComingSoon";
+import InstagramSection from "@/components/InstagramSection";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
@@ -95,8 +96,9 @@ export default function Home() {
 
             {/* OTHER SECTIONS */}
             <PhilosophyScroll />
-            <MembersSection onJoinClick={() => setIsComingSoonOpen(true)} />
-            <FooterCTA />
+            <MembersSection />
+            <InstagramSection />
+            <FooterCTA onJoinClick={() => setIsComingSoonOpen(true)} />
             
           </motion.div>
         )}

@@ -55,17 +55,31 @@ const Card = ({ item, index, progress, range, targetScale }: any) => {
 
   return (
     <div ref={containerRef} className="h-[90vh] flex items-center justify-center sticky top-[5vh] px-4 md:px-0">
-      {/* DECORACIONES LATERALES - Resuelven la sensación de vacío */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-8 opacity-20 pointer-events-none">
-        <div className="w-[1px] h-32 bg-gradient-to-b from-transparent via-brand-primary to-transparent" />
-        <div className="w-2 h-2 rounded-full bg-brand-primary shadow-[0_0_10px_rgba(0,140,140,1)]" />
-        <div className="w-[1px] h-32 bg-gradient-to-t from-transparent via-brand-primary to-transparent" />
+      {/* DECORACIONES LATERALES ENRIQUECIDAS - Resuelven la sensación de vacío */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 opacity-30 pointer-events-none">
+        <div className="w-[1px] h-48 bg-gradient-to-b from-transparent via-brand-primary/50 to-transparent" />
+        <div className="relative">
+          <div className="w-4 h-4 rounded-full border border-brand-primary animate-pulse" />
+          <div className="absolute inset-0 bg-brand-primary/20 blur-md rounded-full" />
+        </div>
+        <div className="text-[10px] font-black tracking-[0.5em] uppercase vertical-text text-brand-primary/40 h-32 flex items-center">RESILIENCIA</div>
+        <div className="w-[1px] h-48 bg-gradient-to-t from-transparent via-brand-primary/50 to-transparent" />
       </div>
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-8 opacity-20 pointer-events-none">
-        <div className="w-[1px] h-32 bg-gradient-to-b from-transparent via-brand-primary-light to-transparent" />
-        <div className="w-2 h-2 rounded-full bg-brand-primary-light shadow-[0_0_10px_rgba(168,213,213,1)]" />
-        <div className="w-[1px] h-32 bg-gradient-to-t from-transparent via-brand-primary-light to-transparent" />
+
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 opacity-30 pointer-events-none">
+        <div className="w-[1px] h-48 bg-gradient-to-b from-transparent via-brand-primary-light/50 to-transparent" />
+        <div className="group relative">
+          <div className="w-10 h-10 border border-brand-primary-light/30 rounded-full flex items-center justify-center">
+            <div className="w-2 h-2 bg-brand-primary-light rounded-full shadow-[0_0_15px_#A8D5D5]" />
+          </div>
+        </div>
+        <div className="text-[10px] font-black tracking-[0.5em] uppercase vertical-text text-brand-primary-light/40 h-32 flex items-center">SABIDURÍA</div>
+        <div className="w-[1px] h-48 bg-gradient-to-t from-transparent via-brand-primary-light/50 to-transparent" />
       </div>
+
+      {/* Background Glow Spots */}
+      <div className="absolute left-0 top-1/4 w-64 h-64 bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute right-0 bottom-1/4 w-64 h-64 bg-brand-primary-light/5 blur-[120px] rounded-full pointer-events-none" />
 
       <motion.div 
         style={{ 

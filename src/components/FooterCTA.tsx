@@ -2,7 +2,11 @@
 
 import { motion } from "framer-motion";
 
-export default function FooterCTA() {
+interface FooterCTAProps {
+  onJoinClick: () => void;
+}
+
+export default function FooterCTA({ onJoinClick }: FooterCTAProps) {
   return (
     <footer className="w-full relative z-10 pt-32 pb-12 px-6 md:px-20 bg-brand-secondary border-t border-brand-white/5 overflow-hidden">
       {/* Decorative background blur for footer */}
@@ -31,6 +35,7 @@ export default function FooterCTA() {
         
         {/* Ozone style micro-interaction on CTA button */}
         <motion.button
+          onClick={onJoinClick}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
