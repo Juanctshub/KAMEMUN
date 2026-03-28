@@ -7,89 +7,50 @@ import { BrainCircuit, Flag, Leaf, TreeDeciduous } from "lucide-react";
 const philosophyItems = [
   {
     id: "01",
-    pre: "I. La Identidad Independiente",
+    pre: "Fase I",
     title: "El Talento del Estado Lara",
-    description: "KAMEMUN no nace de una facultad específica, sino de la convicción de que el talento universitario del Estado Lara es una fuerza imparable. Rompemos barreras académicas tradicionales. Creemos que la diplomacia no es exclusiva de las leyes o la política; es una herramienta universal. Nuestra independencia nos otorga la libertad de innovar y formar delegados que encarnen la excelencia de toda una región.",
-    color: "bg-brand-secondary",
-    IconComponent: Flag
+    subtitle: "La Identidad Independiente",
+    description: "KAMEMUN no nace de una facultad específica, sino de la convicción de que el talento universitario del Estado Lara es una fuerza imparable. Rompemos barreras académicas tradicionales. Creemos que la diplomacia no es exclusiva de las leyes o la política; es una herramienta universal.",
+    color: "from-brand-secondary to-brand-secondary",
+    border: "border-brand-primary/20",
+    IconComponent: Flag,
+    accent: "text-brand-primary-light"
   },
   {
     id: "02",
-    pre: "II. La Filosofía 'Kame'",
+    pre: "Fase II",
     title: "Sabiduría, Paciencia y Resiliencia",
-    description: "En un mundo que premia la inmediatez, nosotros elegimos la profundidad. No entendemos el debate como un grito, sino como una construcción meticulosa. La sabiduría en KAMEMUN se construye paso a paso, con paciencia para analizar cada arista y resiliencia para no ceder ante la marea turbulenta. La victoria no es de quien habla más rápido, sino de quien mejor comprende.",
-    color: "bg-brand-primary",
-    IconComponent: BrainCircuit
+    subtitle: "La Filosofía 'Kame'",
+    description: "En un mundo que premia la inmediatez, nosotros elegimos la profundidad. La sabiduría en KAMEMUN se construye paso a paso, con paciencia para analizar cada arista y resiliencia para no ceder ante la marea turbulenta.",
+    color: "from-brand-primary/80 to-brand-primary",
+    border: "border-brand-white/20",
+    IconComponent: BrainCircuit,
+    accent: "text-brand-white"
   },
   {
     id: "03",
-    pre: "III. Metodología",
+    pre: "Fase III",
     title: "El Camino de la Tortuga",
-    description: "Nuestra metodología se aleja de la preparación superficial. No corremos por obtener un premio; profundizamos para obtener conocimiento. Entendemos que el verdadero cambio requiere tiempo y raíces fuertes. Cultivamos una inteligencia con pasión, donde cada delegado aprende a nutrir su voz con datos, empatía y estrategia a largo plazo.",
-    color: "bg-brand-primary-light", 
+    subtitle: "Metodología",
+    description: "Nuestra metodología se aleja de la preparación superficial. No corremos por obtener un premio; profundizamos para obtener conocimiento. Cultivamos una inteligencia con pasión, donde cada delegado aprende a nutrir su voz con datos, empatía y estrategia.",
+    color: "from-brand-primary-light/80 to-brand-primary-light",
+    border: "border-brand-secondary/20",
     textColor: "text-brand-secondary",
-    IconComponent: Leaf
+    IconComponent: Leaf,
+    accent: "text-brand-secondary"
   },
   {
     id: "04",
-    pre: "IV. Ecosistema de Crecimiento",
+    pre: "Fase IV",
     title: "Donde Tu Voz Perdura",
-    description: "KAMEMUN es más que una simulación; es un ecosistema. No buscamos oradores perfectos, buscamos mentes dispuestas a ser moldeadas por el rigor académico y la fraternidad de equipo. Al unirte, entras en un proceso donde tus ideas encuentran el eco necesario para trascender el aula y convertirse en propuestas reales de impacto global.",
-    color: "bg-brand-secondary",
-    IconComponent: TreeDeciduous
+    subtitle: "Ecosistema de Crecimiento",
+    description: "KAMEMUN es más que una simulación; es un ecosistema. Al unirte, entras en un proceso donde tus ideas encuentran el eco necesario para trascender el aula y convertirse en propuestas reales de impacto global.",
+    color: "from-brand-secondary to-brand-primary/30",
+    border: "border-brand-primary/20",
+    IconComponent: TreeDeciduous,
+    accent: "text-brand-primary-light"
   }
 ];
-
-const Card = ({ item, index, progress, range, targetScale }: any) => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "start start"]
-  });
-
-  const scale = useTransform(progress, range, [1, targetScale]);
-  const opacity = useTransform(progress, range, [1, 0.4]);
-  const iconRotation = useTransform(scrollYProgress, [0, 1], [-15, 15]);
-
-  return (
-    <div ref={containerRef} className="h-screen md:h-[90vh] flex items-center justify-center sticky top-0 md:top-[5vh] px-4 md:px-0">
-      <motion.div 
-        style={{ 
-          scale, 
-          opacity,
-          willChange: "transform, scale, opacity" 
-        }} 
-        className={`flex flex-col relative w-full h-[70vh] md:h-[65vh] md:w-[75vw] mx-auto rounded-[3rem] p-8 md:p-14 overflow-hidden transform-gpu border border-brand-white/10 ${item.color} shadow-2xl`}
-      >
-        <div className="absolute inset-0 bg-noise opacity-[0.03] z-0" />
-        
-        <motion.div 
-          style={{ rotate: iconRotation }} 
-          className="absolute -right-16 -bottom-16 opacity-10 pointer-events-none z-0"
-        >
-          {item.IconComponent && <item.IconComponent className="w-64 h-64 md:w-[400px] md:h-[400px] text-brand-white" />}
-        </motion.div>
-
-        <div className={`relative h-full flex flex-col justify-between z-10 ${item.textColor || "text-brand-accent"}`}>
-          <div className="pt-6">
-            <span className="text-[10px] md:text-xs font-black tracking-[0.4em] uppercase opacity-70 border-b border-current pb-2 mb-8 inline-block">
-              {item.pre}
-            </span>
-            <h2 className="text-4xl md:text-6xl font-serif font-black leading-none tracking-tighter">
-              {item.title}
-            </h2>
-          </div>
-          
-          <div className="max-w-2xl bg-brand-secondary/40 backdrop-blur-xl p-8 rounded-[2.5rem] border border-brand-white/10">
-            <p className="text-base md:text-xl font-light leading-relaxed opacity-90">
-              {item.description}
-            </p>
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
-};
 
 export default function PhilosophyScroll() {
   const container = useRef(null);
@@ -100,11 +61,12 @@ export default function PhilosophyScroll() {
 
   return (
     <section id="filosofia" ref={container} className="relative w-full bg-brand-secondary overflow-hidden">
-      {/* Intro Header */}
-      <div className="h-[40vh] md:h-[60vh] flex flex-col items-center justify-center text-center px-6">
+      {/* HEADER */}
+      <div className="h-[50vh] md:h-[60vh] flex flex-col items-center justify-center text-center px-6">
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-brand-primary-light font-black tracking-[0.5em] uppercase text-[10px] md:text-xs mb-6"
         >
           Fases de la Metodología
@@ -112,46 +74,88 @@ export default function PhilosophyScroll() {
         <motion.h2 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="text-5xl md:text-9xl font-serif font-black text-brand-accent"
+          viewport={{ once: true }}
+          className="text-5xl md:text-8xl lg:text-9xl font-serif font-black text-brand-accent tracking-tighter"
         >
-          Filosofía <br className="md:hidden" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-primary drop-shadow-[0_0_30px_rgba(0,140,140,0.6)] animate-pulse">KAMEMUN</span>
+          Filosofía{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-primary drop-shadow-[0_0_30px_rgba(0,140,140,0.6)]">KAMEMUN</span>
         </motion.h2>
+        <div className="w-16 h-[2px] bg-brand-primary/40 mt-8" />
       </div>
 
-      {/* MOBILE SNAP CAROUSEL */}
-      <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4 px-6 pb-20">
+      {/* MOBILE: Vertical Stack */}
+      <div className="md:hidden flex flex-col gap-6 px-6 pb-24">
         {philosophyItems.map((item, i) => (
-          <div key={i} className="min-w-full snap-center h-[75vh] relative flex flex-col rounded-[3rem] p-8 border border-white/10 shadow-2xl overflow-hidden" style={{ backgroundColor: item.color.replace('bg-', '') === 'brand-secondary' ? '#000808' : item.color.replace('bg-', '') === 'brand-primary' ? '#008C8C' : '#A8D5D5' }}>
-             <div className="absolute inset-0 bg-noise opacity-5" />
-             <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <span className="text-[10px] font-black tracking-widest uppercase opacity-60">Phase {item.id}</span>
-                  <h3 className={`text-4xl font-serif font-black mt-2 leading-tight ${item.textColor || "text-white"}`}>{item.title}</h3>
-                </div>
-                <div className="bg-black/20 backdrop-blur-md p-6 rounded-[2rem] border border-white/5">
-                  <p className={`text-sm font-light leading-relaxed ${item.textColor || "text-white/80"}`}>{item.description}</p>
-                </div>
-             </div>
-          </div>
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            className={`relative rounded-3xl p-8 bg-gradient-to-br ${item.color} border ${item.border} overflow-hidden shadow-xl`}
+          >
+            <div className="absolute inset-0 bg-noise opacity-[0.03]" />
+            <div className="absolute -right-8 -bottom-8 opacity-[0.06]">
+              <item.IconComponent className="w-40 h-40 text-current" />
+            </div>
+            <div className={`relative z-10 ${item.textColor || "text-brand-accent"}`}>
+              <span className={`text-[10px] font-black tracking-[0.4em] uppercase ${item.accent} opacity-70`}>{item.pre}</span>
+              <h3 className="text-2xl font-serif font-black mt-2 mb-1 tracking-tight">{item.title}</h3>
+              <p className="text-xs opacity-50 uppercase tracking-widest font-bold mb-6">{item.subtitle}</p>
+              <p className="text-sm font-light leading-relaxed opacity-85">{item.description}</p>
+            </div>
+          </motion.div>
         ))}
       </div>
 
-      {/* DESKTOP STACKED SCROLL */}
-      <div className="hidden md:block">
-        {philosophyItems.map((item, i) => {
-          const targetScale = 1 - ( (philosophyItems.length - i) * 0.05);
-          return (
-            <Card 
-              key={i} 
-              item={item} 
-              index={i} 
-              progress={scrollYProgress} 
-              range={[i * 0.25, 1]} 
-              targetScale={targetScale} 
-            />
-          );
-        })}
+      {/* DESKTOP: Premium Horizontal Timeline */}
+      <div className="hidden md:block max-w-7xl mx-auto px-6 pb-40">
+        {/* Timeline Line */}
+        <div className="relative">
+          <div className="absolute left-0 right-0 top-6 h-[2px] bg-brand-white/5 z-0" />
+          <motion.div 
+            className="absolute left-0 top-6 h-[2px] bg-brand-primary z-10 origin-left"
+            style={{ scaleX: scrollYProgress }}
+          />
+
+          <div className="grid grid-cols-4 gap-8 relative z-20">
+            {philosophyItems.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: i * 0.15 }}
+                className="flex flex-col"
+              >
+                {/* Timeline Dot */}
+                <div className="flex items-center gap-4 mb-10">
+                  <div className="w-3 h-3 rounded-full bg-brand-primary shadow-[0_0_15px_rgba(0,140,140,0.6)] flex-shrink-0" />
+                  <span className={`text-[10px] font-black tracking-[0.4em] uppercase ${item.accent}`}>{item.pre}</span>
+                </div>
+
+                {/* Card */}
+                <div className={`group relative flex-1 rounded-[2.5rem] p-10 bg-gradient-to-br ${item.color} border ${item.border} overflow-hidden shadow-2xl hover:shadow-[0_20px_80px_rgba(0,140,140,0.15)] transition-all duration-500 hover:-translate-y-2`}>
+                  <div className="absolute inset-0 bg-noise opacity-[0.03]" />
+                  <div className="absolute -right-6 -bottom-6 opacity-[0.06] group-hover:opacity-[0.12] transition-opacity duration-500">
+                    <item.IconComponent className="w-48 h-48 text-current" />
+                  </div>
+                  
+                  <div className={`relative z-10 h-full flex flex-col ${item.textColor || "text-brand-accent"}`}>
+                    <div className="mb-8">
+                      <div className={`w-12 h-12 rounded-2xl bg-brand-white/5 flex items-center justify-center mb-6 border ${item.border}`}>
+                        <item.IconComponent className={`w-6 h-6 ${item.accent}`} />
+                      </div>
+                      <h3 className="text-2xl lg:text-3xl font-serif font-black tracking-tight leading-tight mb-2">{item.title}</h3>
+                      <p className="text-xs opacity-40 uppercase tracking-[0.2em] font-bold">{item.subtitle}</p>
+                    </div>
+                    <p className="text-sm lg:text-base font-light leading-relaxed opacity-80 mt-auto">{item.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

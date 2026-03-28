@@ -1,110 +1,115 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Quote, PenLine, Ruler, Layers } from "lucide-react";
+import { Quote, Sparkles } from "lucide-react";
 import Image from "next/image";
 
 export default function SGMessage() {
   return (
-    <section id="mensaje-sg" className="relative w-full py-32 bg-brand-secondary overflow-hidden">
-      {/* Background Architectural Patterns (UCV/Architecture Inspiration) */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none select-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#A8D5D5_1px,transparent_1px),linear-gradient(to_bottom,#A8D5D5_1px,transparent_1px)] bg-[size:60px_60px]" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(0,140,140,0.2)_0%,transparent_50%)]" />
+    <section id="mensaje-sg" className="relative w-full py-24 md:py-40 bg-brand-secondary overflow-hidden">
+      {/* Background Architectural Grid */}
+      <div className="absolute inset-0 z-0 opacity-[0.025] pointer-events-none select-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#A8D5D5_1px,transparent_1px),linear-gradient(to_bottom,#A8D5D5_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      {/* Decorative Glow Orbs */}
+      <div className="absolute top-20 left-10 w-64 h-64 bg-brand-primary/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-brand-primary-light/5 blur-[180px] rounded-full pointer-events-none" />
+
+      {/* Decorative Side Lines */}
+      <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-8 opacity-20 pointer-events-none">
+        <div className="w-[1px] h-40 bg-gradient-to-b from-transparent via-brand-primary/60 to-transparent" />
+        <Sparkles className="w-4 h-4 text-brand-primary animate-pulse" />
+        <div className="w-[1px] h-40 bg-gradient-to-b from-transparent via-brand-primary/60 to-transparent" />
+      </div>
+      <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-8 opacity-20 pointer-events-none">
+        <div className="w-[1px] h-40 bg-gradient-to-b from-transparent via-brand-primary-light/60 to-transparent" />
+        <Sparkles className="w-4 h-4 text-brand-primary-light animate-pulse" />
+        <div className="w-[1px] h-40 bg-gradient-to-b from-transparent via-brand-primary-light/60 to-transparent" />
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
+        {/* HEADER */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 md:mb-24 text-center"
+        >
+          <p className="text-brand-primary-light font-black tracking-[0.5em] uppercase text-[10px] md:text-xs mb-6">Mensaje Oficial</p>
+          <h2 className="text-4xl md:text-7xl lg:text-8xl font-serif font-black text-brand-accent tracking-tighter leading-none">
+            Palabras de{" "}
+            <span className="text-brand-primary italic">Liderazgo</span>
+          </h2>
+          <div className="w-20 h-[2px] bg-brand-primary/40 mx-auto mt-8" />
+        </motion.div>
+
+        {/* THE LETTER */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative bg-brand-white/[0.015] border border-brand-white/5 p-8 md:p-16 lg:p-20 rounded-[2rem] md:rounded-[3rem] shadow-2xl backdrop-blur-sm overflow-hidden"
+        >
+          {/* Texture Overlay */}
+          <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
+
+          {/* Decorative Quote Icon */}
+          <Quote className="absolute top-6 right-6 md:top-10 md:right-10 w-20 h-20 md:w-32 md:h-32 text-brand-primary/5 rotate-12 pointer-events-none" />
+
+          {/* Corner Decorations */}
+          <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-brand-primary/10 rounded-tl-[3rem] pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-brand-primary/10 rounded-br-[3rem] pointer-events-none" />
+
+          <div className="relative z-10 space-y-8">
+            {/* First paragraph - Drop cap */}
+            <p className="text-brand-accent text-base md:text-xl leading-relaxed font-light first-letter:text-5xl md:first-letter:text-6xl first-letter:font-black first-letter:text-brand-primary first-letter:mr-2 first-letter:float-left first-letter:leading-[0.8]">
+              Delegados, hace tres años pisé mi primer Modelo de Naciones Unidas, sin imaginar que esa primera orden del día y todas las directivas que redacté redefinirían mi concepto de liderazgo. Hoy, como Secretaria General de KAMEMUN, me dirijo a ustedes no solo desde la formalidad del cargo, sino desde el corazón de una estudiante de arquitectura de la UCV que ve el mundo como un plano que necesita ser rediseñado.
+            </p>
+            
+            <p className="text-brand-silver text-base md:text-lg leading-relaxed font-light opacity-85">
+              Amo enseñar y para mí, KAMEMUN no es solo un evento; es la oportunidad de dejar una huella en cada uno de ustedes, a quienes como suelo decir, veo como mi familia. Quiero que este modelo sea sus cimientos, donde aprendan no solo a debatir, sino a construir puentes donde otros ven muros y a encontrar soluciones para problemas que parecen no tener salida.
+            </p>
+
+            {/* Highlighted Quote */}
+            <div className="relative my-10 py-8 px-6 md:px-10 border-l-4 border-brand-primary bg-brand-primary/5 rounded-r-2xl">
+              <Quote className="absolute -top-3 -left-3 w-8 h-8 text-brand-primary opacity-60" />
+              <p className="text-brand-primary-light text-base md:text-lg font-medium leading-relaxed italic">
+                Como crisera de corazón, mi hogar diplomático siempre han sido los comités de crisis porque ahí aprendes que el tiempo es un recurso invaluable y que una decisión rápida y fundamentada puede cambiar el curso de la historia.
+              </p>
+            </div>
+
+            <p className="text-brand-silver text-base md:text-lg leading-relaxed font-light opacity-85">
+              Esa misma adrenalina y exigencia técnica son las que me definen; les prometo un modelo exigente, serio y profundamente académico, pero también un espacio seguro donde sus voces importen, no tengan miedo de equivocarse; el error es solo un ajuste en el diseño.
+            </p>
+
+            {/* Closing Statement */}
+            <div className="pt-8 border-t border-brand-white/10">
+              <p className="text-brand-accent text-lg md:text-2xl font-black leading-snug tracking-tight">
+                Prepárense para debatir, para aprender y, sobre todo, para dejar su propia huella. <span className="text-brand-primary">Bienvenidos a casa, delegados, bienvenidos a KAMEMUN.</span>
+              </p>
+            </div>
+          </div>
           
-          {/* LADO IZQUIERDO: TÍTULO Y DECORACIÓN */}
-          <div className="lg:col-span-4 lg:sticky lg:top-32">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="flex items-center gap-4">
-                <span className="w-12 h-[1px] bg-brand-primary/40 block" />
-                <p className="text-brand-primary-light font-black tracking-[0.4em] uppercase text-[10px] md:text-xs">Propósito & Visión</p>
+          {/* SIGNATURE BLOCK */}
+          <div className="relative z-10 mt-14 md:mt-20 flex flex-col md:flex-row items-center md:items-end justify-between gap-8 border-t border-brand-white/5 pt-10">
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <span className="text-brand-accent font-black text-2xl md:text-3xl tracking-tight">Antonella Sciulli</span>
+              <span className="text-brand-primary-light font-black tracking-[0.3em] uppercase text-[9px] md:text-[10px] mt-2">Secretaria General / Arquitecta UCV</span>
+            </div>
+            
+            {/* Two Logos: KAMEMUN + UCV */}
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-full border border-brand-primary/20 flex items-center justify-center p-2.5 bg-brand-white/[0.02]">
+                <Image src="/images/kamemun-logo.png" alt="KAMEMUN" width={36} height={36} className="grayscale opacity-50 hover:opacity-80 transition-opacity object-contain" />
               </div>
-              
-              <h2 className="text-5xl md:text-7xl font-serif font-black text-brand-accent tracking-tighter leading-none">
-                Palabras de <br />
-                <span className="text-brand-primary italic">Liderazgo</span>
-              </h2>
-
-              <div className="flex flex-col gap-6 pt-10">
-                <div className="flex items-center gap-6 text-brand-silver/40">
-                  <Ruler className="w-6 h-6" />
-                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Concepto Arquitectónico</span>
-                </div>
-                <div className="flex items-center gap-6 text-brand-silver/40">
-                  <Layers className="w-6 h-6" />
-                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Estructura Académica</span>
-                </div>
-                <div className="flex items-center gap-6 text-brand-silver/40">
-                  <PenLine className="w-6 h-6" />
-                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Trazo Diplomático</span>
-                </div>
+              <div className="w-14 h-14 rounded-full border border-brand-primary/20 flex items-center justify-center p-2.5 bg-brand-white/[0.02]">
+                <Image src="/images/ucv-logo.svg" alt="UCV" width={36} height={36} className="grayscale opacity-50 hover:opacity-80 transition-opacity object-contain" />
               </div>
-            </motion.div>
+            </div>
           </div>
-
-          {/* LADO DERECHO: EL MENSAJE (EL ALMA) */}
-          <div className="lg:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative bg-brand-white/[0.02] border border-brand-white/5 p-8 md:p-20 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl backdrop-blur-sm overflow-hidden"
-            >
-              {/* Noise & Texture */}
-              <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
-              <Quote className="absolute -top-10 -right-10 w-64 h-64 text-brand-primary/5 opacity-40 z-0 rotate-12" />
-
-              <div className="relative z-10">
-                <div className="prose prose-invert max-w-none space-y-8">
-                  <p className="text-brand-accent text-lg md:text-2xl font-serif font-light leading-relaxed first-letter:text-6xl first-letter:font-black first-letter:text-brand-primary first-letter:mr-3 first-letter:float-left first-letter:mt-1 drop-shadow-sm italic">
-                    Delegados, hace tres años pisé mi primer Modelo de Naciones Unidas, sin imaginar que esa primera orden del día y todas las directivas que redacté redefinirían mi concepto de liderazgo. Hoy, como Secretaria General de KAMEMUN, me dirijo a ustedes no solo desde la formalidad del cargo, sino desde el corazón de una estudiante de arquitectura de la UCV que ve el mundo como un plano que necesita ser rediseñado.
-                  </p>
-                  
-                  <p className="text-brand-silver text-base md:text-xl font-light leading-relaxed opacity-90 text-justify md:text-left">
-                    Amo enseñar y para mí, KAMEMUN no es solo un evento; es la oportunidad de dejar una huella en cada uno de ustedes, a quienes como suelo decir, veo como mi familia. Quiero que este modelo sea sus cimientos, donde aprendan no solo a debatir, sino a construir puentes donde otros ven muros y a encontrar soluciones para problemas que parecen no tener salida.
-                  </p>
-
-                  <div className="py-6 border-y border-brand-primary/10">
-                    <p className="text-brand-primary-light text-base md:text-xl font-serif italic font-medium leading-relaxed text-center">
-                      "Como crisera de corazón, mi hogar diplomático siempre han sido los comités de crisis porque ahí aprendes que el tiempo es un recurso invaluable y que una decisión rápida y fundamentada puede cambiar el curso de la historia."
-                    </p>
-                  </div>
-
-                  <p className="text-brand-silver text-base md:text-xl font-light leading-relaxed opacity-90 text-justify md:text-left">
-                    Esa misma adrenalina y exigencia técnica son las que me definen; les prometo un modelo exigente, serio y profundamente académico, pero también un espacio seguro donde sus voces importen, no tengan miedo de equivocarse; el error es solo un ajuste en el diseño.
-                  </p>
-
-                  <p className="text-brand-accent text-xl md:text-2xl font-serif font-black tracking-tight leading-tight pt-8 border-t border-brand-white/10 uppercase">
-                    Prepárense para debatir, para aprender y, sobre todo, para dejar su propia huella. Bienvenidos a casa, delegados, bienvenidos a KAMEMUN.
-                  </p>
-                </div>
-                
-                {/* Firma o Label Final */}
-                <div className="mt-12 md:mt-16 flex flex-col md:flex-row items-center md:items-end justify-between gap-8 border-t border-brand-white/5 pt-10">
-                  <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                    <span className="text-brand-accent font-serif font-black text-2xl md:text-3xl tracking-tight">Antonella Sciulli</span>
-                    <span className="text-brand-primary-light font-black tracking-[0.4em] uppercase text-[9px] md:text-[10px] mt-2">Secretaria General / Arquitecta UCV</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-14 h-14 rounded-full border border-brand-primary/30 flex items-center justify-center p-3">
-                      <Image src="/images/kamemun-logo.png" alt="Seal" width={40} height={40} className="grayscale opacity-40 object-contain" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

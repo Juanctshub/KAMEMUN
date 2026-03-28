@@ -23,8 +23,8 @@ export default function MembersSection() {
             <p className="text-brand-primary-light font-bold tracking-[0.35em] uppercase mb-4 text-[10px] md:text-xs bg-brand-primary/5 px-6 py-2 rounded-full border border-brand-primary/20">
               Conoce a el STAFF
             </p>
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black tracking-tighter drop-shadow-sm flex items-baseline">
-              <span className="text-brand-primary italic">Secret</span>
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black tracking-tighter drop-shadow-sm flex items-baseline italic">
+              <span className="text-brand-primary">Secret</span>
               <span className="text-brand-white">ariado</span>
             </h2>
           </motion.div>
