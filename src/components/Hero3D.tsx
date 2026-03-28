@@ -36,9 +36,9 @@ export default function Hero3D() {
   if (!mounted) return null;
 
   return (
-    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-full md:w-[55%] h-full z-0 flex items-center justify-center pointer-events-none md:pointer-events-auto">
+    <div className="absolute right-[-5%] md:right-0 top-[55%] -translate-y-1/2 w-full md:w-[50%] lg:w-[45%] h-screen z-0 flex items-center justify-center pointer-events-none md:pointer-events-auto">
       <motion.div
-        className="relative w-96 h-96 md:w-[700px] md:h-[700px]"
+        className="relative w-80 h-80 md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px]"
         style={{ perspective: 1500 }}
       >
         <motion.div

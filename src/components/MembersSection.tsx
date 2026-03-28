@@ -2,75 +2,75 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Award, Target, BookOpen } from "lucide-react";
+import { Award, Target, BookOpen, Quote } from "lucide-react";
 
 export default function MembersSection() {
   return (
     <section id="secretariado" className="relative w-full z-30 pb-32 pt-24 bg-brand-secondary overflow-hidden">
-      {/* Background Decorative Element - Optimizado */}
-      <div className="absolute top-0 right-0 w-[50%] h-[100%] bg-brand-primary/[0.03] -skew-x-12 transform translate-x-1/4 z-0 pointer-events-none will-change-transform" />
+      {/* Background Decorative Element */}
+      <div className="absolute top-0 right-0 w-[50%] h-[100%] bg-brand-primary/[0.02] -skew-x-12 transform translate-x-1/4 z-0 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="mb-20">
-          <motion.p 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-brand-primary-light font-bold tracking-[0.3em] uppercase mb-4 text-xs md:text-sm"
-          >
-            Liderazgo Institucional
-          </motion.p>
-          <motion.h2 
+        
+        {/* Cabecera de Sección - Más compacta y elegante */}
+        <div className="mb-16 md:mb-24">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-8xl font-serif font-black text-brand-accent tracking-tighter drop-shadow-sm"
+            className="flex flex-col items-start"
           >
-            Secretaría <span className="text-brand-primary">General</span>
-          </motion.h2>
+            <p className="text-brand-primary-light font-bold tracking-[0.35em] uppercase mb-3 text-[10px] md:text-xs bg-brand-primary/5 px-4 py-1.5 rounded-full border border-brand-primary/20">
+              Liderazgo Institucional
+            </p>
+            <h2 className="text-4xl md:text-6xl font-serif font-black text-brand-accent tracking-tighter drop-shadow-sm">
+              Secretaría <span className="text-brand-primary italic">General</span>
+            </h2>
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
-          {/* COLUMNA IZQUIERDA: LA TARJETA 3D FLIPPABLE */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm aspect-[3/4] group perspective-[2000px]">
+          {/* COLUMNA IZQUIERDA: EL ROSTRO (IMAGEN PREDOMINANTE) */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-start">
+            <div className="relative w-full max-w-[420px] aspect-[4/5] group perspective-[2000px]">
               <motion.div 
-                className="w-full h-full relative transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-[0_20px_80px_rgba(0,0,0,0.4)] rounded-3xl cursor-pointer transform-gpu"
+                className="w-full h-full relative transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-[0_30px_100px_rgba(0,0,0,0.5)] rounded-[2rem] cursor-pointer transform-gpu"
                 style={{ willChange: "transform" }}
               >
                 
-                {/* CARA FRONTAL (FOTO) */}
-                <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-3xl overflow-hidden border border-brand-primary/20 bg-brand-secondary">
-                  <div className="absolute inset-0 bg-brand-secondary/40 mix-blend-multiply z-10" />
+                {/* CARA FRONTAL: LA IMAGEN ES LA PROTAGONISTA */}
+                <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-[2rem] overflow-hidden border border-brand-white/10 bg-brand-secondary">
                   <Image 
                     src="/images/m.jpg" 
                     alt="Secretaria General - Antonella Sciulli" 
                     fill 
-                    className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-[2000ms]"
+                    className="object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-[1500ms] scale-105 group-hover:scale-100"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-secondary via-transparent to-transparent z-20" />
-                  <div className="absolute bottom-10 left-10 z-30">
-                    <h3 className="text-4xl md:text-5xl font-serif font-black text-brand-accent tracking-tight leading-none mb-2 drop-shadow-lg">
-                      Antonella<br/>Sciulli
+                  {/* Overlay gradiente muy sutil para que el nombre respire pero no tape */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-secondary/80 via-transparent to-transparent z-20 opacity-60" />
+                  
+                  {/* Texto Decorativo Mínimo */}
+                  <div className="absolute bottom-8 left-8 z-30 pointer-events-none">
+                    <p className="text-brand-primary-light font-bold tracking-widest uppercase text-[10px] mb-1 opacity-80">Antonella Sciulli</p>
+                    <h3 className="text-2xl font-serif font-black text-brand-white leading-none tracking-tight">
+                      Secretaria General
                     </h3>
-                    <p className="text-brand-primary-light font-semibold tracking-widest uppercase text-xs md:text-sm drop-shadow-md">
-                      Protocolo & Liderazgo
-                    </p>
                   </div>
                 </div>
 
-                {/* CARA TRASERA (INFORMACIÓN / CARTA) */}
-                <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl overflow-hidden border border-brand-primary-light/50 bg-gradient-to-br from-brand-primary/20 via-brand-secondary to-brand-secondary shadow-[0_0_50px_rgba(0,140,140,0.4)] flex flex-col justify-center p-10 transform-gpu">
-                  <div className="relative z-10 flex flex-col items-center text-center h-full justify-center">
-                    <span className="w-12 h-[2px] bg-brand-primary-light mb-8 inline-block shadow-[0_0_10px_rgba(168,213,213,0.8)]"></span>
-                    <p className="text-lg md:text-xl font-light text-brand-silver leading-relaxed italic mb-10 selection:bg-brand-primary-light selection:text-brand-secondary">
-                      "Mi compromiso es elevar el talento de Lara a escenarios globales, demostrando que la diplomacia es nuestra mejor herramienta para el cambio."
+                {/* CARA TRASERA (INFORMACIÓN CORTA Y CONTACTO) */}
+                <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-[2rem] overflow-hidden border border-brand-primary-light/30 bg-gradient-to-br from-brand-secondary via-brand-secondary to-brand-primary/10 shadow-2xl flex flex-col justify-center p-12 transform-gpu">
+                  <div className="relative z-10 flex flex-col items-center text-center">
+                    <Quote className="w-10 h-10 text-brand-primary/40 mb-6" />
+                    <p className="text-base md:text-lg font-light text-brand-silver leading-relaxed italic mb-8">
+                      "Mi compromiso es elevar el talento de Lara a escenarios globales, demostrando que la diplomacia es nuestra mejor herramienta."
                     </p>
+                    <div className="w-full h-[1px] bg-brand-white/10 mb-8" />
                     <div className="flex flex-col items-center">
-                      <span className="text-brand-primary font-bold tracking-widest uppercase text-[10px] mb-2">Contacto Directo</span>
-                      <p className="text-brand-accent font-serif tracking-wide text-sm opacity-80">secretaria@kamemun.org</p>
+                      <span className="text-brand-primary font-bold tracking-widest uppercase text-[9px] mb-2 opacity-60">Contacto Oficial</span>
+                      <p className="text-brand-accent font-serif tracking-wide text-sm">secretaria@kamemun.org</p>
                     </div>
                   </div>
                 </div>
@@ -78,75 +78,52 @@ export default function MembersSection() {
             </div>
           </div>
 
-          {/* COLUMNA DERECHA: TEXTO EDITORIAL Y LOGROS */}
-          <div className="lg:col-span-7 space-y-12">
+          {/* COLUMNA DERECHA: TEXTO EDITORIAL (MÁS EQUILIBRADO) */}
+          <div className="lg:col-span-7 space-y-10 pt-4">
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="will-change-transform"
             >
-              <h3 className="text-3xl md:text-4xl font-serif text-brand-accent mb-6 italic leading-snug">
+              <h3 className="text-2xl md:text-3xl font-serif text-brand-accent mb-6 italic leading-snug max-w-2xl">
                 "La excelencia no es un acto, sino el hábito de negociar por un futuro mejor."
               </h3>
-              <p className="text-brand-silver text-lg leading-relaxed font-light">
-                Bajo la dirección de la Secretaría General, KAMEMUN ha consolidado una estructura académica de alto nivel que fusiona la tradición diplomática con la innovación regional del Estado Lara. Nuestra misión es formar delegados resilientes, capaces de dominar el arte de la oratoria y la resolución de conflictos.
+              <p className="text-brand-silver text-base md:text-lg leading-relaxed font-light max-w-2xl">
+                Bajo la dirección de la Secretaría General, KAMEMUN ha consolidado una estructura académica de alto nivel que fusiona la tradición diplomática con la innovación regional del Estado Lara.
               </p>
             </motion.div>
 
-            {/* Grid de Puntos Clave */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {/* Grid de Puntos Clave - Más ligero */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl">
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="p-6 rounded-2xl bg-brand-white/5 border border-brand-white/10 hover:border-brand-primary/40 transition-colors transform-gpu"
+                whileHover={{ y: -5 }}
+                className="p-6 rounded-2xl bg-brand-white/[0.03] border border-brand-white/5 hover:border-brand-primary/20 transition-all transform-gpu"
               >
-                <Award className="w-8 h-8 text-brand-primary-light mb-4" />
-                <h4 className="text-brand-accent font-bold mb-2 uppercase tracking-widest text-sm">Excelencia Académica</h4>
-                <p className="text-brand-silver text-sm font-light">Protocolos rigurosos y formación integral para cada comité.</p>
+                <Award className="w-6 h-6 text-brand-primary-light mb-3" />
+                <h4 className="text-brand-accent font-bold mb-2 uppercase tracking-widest text-[11px]">Excelencia Académica</h4>
+                <p className="text-brand-silver text-xs font-light leading-relaxed">Protocolos rigurosos y formación integral para cada comité.</p>
               </motion.div>
 
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="p-6 rounded-2xl bg-brand-white/5 border border-brand-white/10 hover:border-brand-primary/40 transition-colors transform-gpu"
+                whileHover={{ y: -5 }}
+                className="p-6 rounded-2xl bg-brand-white/[0.03] border border-brand-white/5 hover:border-brand-primary/20 transition-all transform-gpu"
               >
-                <Target className="w-8 h-8 text-brand-primary-light mb-4" />
-                <h4 className="text-brand-accent font-bold mb-2 uppercase tracking-widest text-sm">Liderazgo Regional</h4>
-                <p className="text-brand-silver text-sm font-light">Proyectando el potencial del talento universitario de Lara.</p>
+                <Target className="w-6 h-6 text-brand-primary-light mb-3" />
+                <h4 className="text-brand-accent font-bold mb-2 uppercase tracking-widest text-[11px]">Liderazgo Regional</h4>
+                <p className="text-brand-silver text-xs font-light leading-relaxed">Proyectando el potencial del talento universitario de Lara al mundo.</p>
               </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-                className="p-6 rounded-2xl bg-brand-white/5 border border-brand-white/10 hover:border-brand-primary/40 transition-colors transform-gpu"
-              >
-                <BookOpen className="w-8 h-8 text-brand-primary-light mb-4" />
-                <h4 className="text-brand-accent font-bold mb-2 uppercase tracking-widest text-sm">Resiliencia Kame</h4>
-                <p className="text-brand-silver text-sm font-light">Más que debatir, construimos soluciones a largo plazo.</p>
-              </motion.div>
-
-              <div className="flex items-center justify-center p-6 border-2 border-dashed border-brand-white/10 rounded-2xl opacity-40">
-                <p className="text-brand-silver text-xs uppercase tracking-widest text-center">Innovación <br/> Continua</p>
-              </div>
             </div>
 
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="pt-6"
+              transition={{ delay: 0.4 }}
+              className="pt-4"
             >
-              <button className="px-10 py-4 bg-transparent border-2 border-brand-primary text-brand-primary font-black rounded-full hover:bg-brand-primary hover:text-brand-secondary transition-all uppercase tracking-widest text-xs">
-                Ver Acta de Instalación
+              <button className="px-8 py-3.5 bg-transparent border border-brand-primary/40 text-brand-primary font-bold rounded-full hover:bg-brand-primary hover:text-brand-secondary transition-all uppercase tracking-[0.2em] text-[10px]">
+                Acta de Instalación
               </button>
             </motion.div>
           </div>
@@ -155,4 +132,3 @@ export default function MembersSection() {
     </section>
   );
 }
-

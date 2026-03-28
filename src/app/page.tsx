@@ -28,26 +28,26 @@ export default function Home() {
             <Navbar />
             
             {/* HERO SECTION */}
-            <div id="inicio" className="relative w-full min-h-screen pt-32 md:pt-40">
+            <div id="inicio" className="relative w-full min-h-screen pt-40 md:pt-48">
               <HeroBackground />
               <Hero3D />
 
-              <section className="w-full h-full flex flex-col items-start justify-center px-6 md:px-20 z-10 relative pointer-events-none">
-                <div className="max-w-4xl pointer-events-auto">
+              <section className="w-full h-full flex flex-col items-start justify-center px-6 md:px-24 lg:px-32 z-10 relative pointer-events-none">
+                <div className="max-w-3xl pointer-events-auto">
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
                   >
-                    <p className="text-brand-primary-light font-black tracking-[0.4em] uppercase mb-6 text-sm md:text-base flex items-center gap-4 drop-shadow-lg">
-                      <span className="w-12 h-[2px] bg-brand-primary-light inline-block shadow-[0_0_10px_rgba(168,213,213,0.8)]"></span>
+                    <p className="text-brand-primary-light font-black tracking-[0.4em] uppercase mb-4 text-xs md:text-sm flex items-center gap-4 drop-shadow-lg">
+                      <span className="w-10 h-[2px] bg-brand-primary-light inline-block shadow-[0_0_10px_rgba(168,213,213,0.8)]"></span>
                       Más que un Modelo de Naciones Unidas
                     </p>
                     <div className="relative">
                       {/* Glow effects detrás del texto para emular SVPMUN */}
                       <div className="absolute -inset-10 bg-brand-primary/20 blur-[100px] rounded-full z-0 pointer-events-none" />
                       
-                      <h1 className="relative z-10 text-6xl sm:text-7xl md:text-[6.5rem] lg:text-[7.5rem] font-serif font-black tracking-tight leading-[0.95] text-brand-accent drop-shadow-2xl">
+                      <h1 className="relative z-10 text-5xl sm:text-6xl md:text-[5rem] lg:text-[6.5rem] font-serif font-black tracking-tight leading-[0.95] text-brand-accent drop-shadow-2xl">
                         El Camino <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light via-brand-white to-brand-primary drop-shadow-[0_0_40px_rgba(0,140,140,0.5)]">
                           de la Tortuga
@@ -60,7 +60,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
-                    className="mt-8 md:mt-12 text-brand-silver text-lg md:text-2xl font-light max-w-2xl leading-relaxed drop-shadow-md"
+                    className="mt-6 md:mt-10 text-brand-silver text-base md:text-xl font-light max-w-xl leading-relaxed drop-shadow-md"
                   >
                     Somos una delegación Universitaria Independiente del Estado Lara. Avanzamos con resiliencia y paciencia, convirtiendo cada debate en oportunidades.
                   </motion.p>

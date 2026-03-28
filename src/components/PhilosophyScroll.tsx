@@ -54,45 +54,39 @@ const Card = ({ item, index, progress, range, targetScale }: any) => {
   const iconRotation = useTransform(scrollYProgress, [0, 1], [-15, 15]);
 
   return (
-    <div ref={containerRef} className="h-screen flex items-center justify-center sticky top-0">
+    <div ref={containerRef} className="h-[90vh] flex items-center justify-center sticky top-[5vh]">
       <motion.div 
         style={{ 
           scale, 
-          top: `calc(-5vh + ${index * 25}px)`,
+          top: `calc(index * 15px)`,
           willChange: "transform, scale, opacity" 
         }} 
-        className={`flex flex-col relative w-full h-auto min-h-[75vh] md:h-[85vh] md:w-[85vw] mx-auto rounded-[3.5rem] p-8 md:p-16 xl:p-24 origin-top shadow-[0_-10px_50px_rgba(0,0,0,0.5)] border border-brand-white/10 ${item.color} overflow-hidden transform-gpu`}
+        className={`flex flex-col relative w-full h-fit min-h-[55vh] md:h-[65vh] md:w-[75vw] mx-auto rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 lg:p-14 origin-top border border-brand-white/10 ${item.color} overflow-hidden transform-gpu shadow-2xl`}
       >
-        <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none mix-blend-overlay z-0 will-change-transform" />
+        <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none mix-blend-overlay z-0" />
         
-        {/* ICONO GIGANTE TEMÁTICO FLOTANTE (REEMPLAZA A LAS IMAGENES DESPROPORCIONADAS) */}
+        {/* ICONO GIGANTE TEMÁTICO FLOTANTE - Alineación más sobria */}
         <motion.div 
-          style={{ rotate: iconRotation, willChange: "transform, rotate" }} 
-          className="absolute -right-10 -bottom-10 md:-right-20 md:-bottom-20 opacity-10 pointer-events-none z-0 transform-gpu"
+          style={{ rotate: iconRotation }} 
+          className="absolute -right-12 -bottom-12 md:-right-20 md:-bottom-20 opacity-[0.08] pointer-events-none z-0 transform-gpu"
         >
           {item.IconComponent && (
-            <item.IconComponent className="w-80 h-80 md:w-[500px] md:h-[500px] text-brand-white drop-shadow-2xl" />
+            <item.IconComponent className="w-64 h-64 md:w-[400px] md:h-[400px] text-brand-white" />
           )}
         </motion.div>
 
         <div className={`relative h-full flex flex-col justify-between z-10 ${item.textColor || "text-brand-accent"}`}>
-          {/* Número Flotante Mínimo para respirar */}
-          <div className="absolute top-0 right-0 text-6xl md:text-9xl font-black opacity-10 md:opacity-15 pointer-events-none uppercase tracking-tighter mix-blend-overlay">
-            {item.id}
-          </div>
-
-          <div className="max-w-4xl drop-shadow-md relative z-10 pt-4 md:pt-0">
-            <p className="font-bold tracking-[0.3em] uppercase mb-4 md:mb-6 text-xs md:text-sm opacity-90 backdrop-blur-sm inline-block px-4 py-2 rounded-full bg-brand-white/10 border border-brand-white/20 shadow-sm">
+          <div className="max-w-3xl drop-shadow-sm relative z-10 pt-2">
+            <p className="font-bold tracking-[0.25em] uppercase mb-3 text-[10px] md:text-xs opacity-90 backdrop-blur-sm inline-block px-3 py-1.5 rounded-full bg-brand-white/5 border border-brand-white/10">
               {item.pre}
             </p>
-            {/* Texto ajustado para no desbordar en fase 2, 3, 4 */}
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-black tracking-tight drop-shadow-lg leading-[1.1] mb-6">
+            <h2 className="text-3xl md:text-5xl lg:text-5xl font-serif font-black tracking-tight leading-[1.1] mb-4">
               {item.title}
             </h2>
           </div>
           
-          <div className="max-w-4xl mt-auto z-10 p-6 md:p-10 rounded-[2rem] backdrop-blur-xl bg-brand-secondary/30 border border-brand-white/10 shadow-lg">
-            <p className="text-base md:text-xl xl:text-2xl font-light leading-relaxed drop-shadow-md text-brand-accent">
+          <div className="max-w-2xl mt-auto z-10 p-5 md:p-8 rounded-[1.5rem] md:rounded-[2rem] backdrop-blur-md bg-brand-secondary/40 border border-brand-white/5 shadow-xl">
+            <p className="text-sm md:text-lg lg:text-lg font-light leading-relaxed text-brand-accent/90">
               {item.description}
             </p>
           </div>
