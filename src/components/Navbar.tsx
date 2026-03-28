@@ -11,8 +11,12 @@ const navLinks = [
   { num: "03", title: "Secretariado", desc: "Conoce a quienes dirigen el modelo.", anchor: "secretariado" }
 ];
 
-export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+interface NavbarProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (open: boolean) => void;
+}
+
+export default function Navbar({ isMenuOpen, setIsMenuOpen }: NavbarProps) {
 
   return (
     <>

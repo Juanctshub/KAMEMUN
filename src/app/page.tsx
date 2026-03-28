@@ -8,15 +8,20 @@ import PhilosophyScroll from "@/components/PhilosophyScroll";
 import MembersSection from "@/components/MembersSection";
 import FooterCTA from "@/components/FooterCTA";
 import Navbar from "@/components/Navbar";
+import ComingSoon from "@/components/ComingSoon";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
 
   return (
     <main className="relative min-h-screen bg-brand-secondary text-brand-accent overflow-hidden font-sans">
       <LoadingScreen onComplete={() => setIsLoading(false)} />
       
+      <ComingSoon isOpen={isComingSoonOpen} onClose={() => setIsComingSoonOpen(false)} />
+
       <AnimatePresence>
         {!isLoading && (
           <motion.div
@@ -25,7 +30,7 @@ export default function Home() {
             transition={{ duration: 1.5, ease: "easeInOut" }}
             className="w-full relative min-h-screen flex flex-col"
           >
-            <Navbar />
+            <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             
             {/* HERO SECTION */}
             <div id="inicio" className="relative w-full min-h-screen pt-40 md:pt-48">
@@ -69,12 +74,18 @@ export default function Home() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
-                    className="mt-12 md:mt-16 flex flex-col sm:flex-row gap-6 w-full sm:w-auto text-sm md:text-base uppercase tracking-[0.2em]"
+                    className="mt-8 md:mt-12 flex flex-col sm:row items-center sm:flex-row gap-6 w-full sm:w-auto text-sm md:text-base uppercase tracking-[0.2em]"
                   >
-                    <button className="w-full sm:w-auto px-12 py-5 bg-brand-primary text-brand-secondary font-black rounded-full hover:bg-brand-primary-light transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(0,140,140,0.5)]">
+                    <button 
+                      onClick={() => setIsComingSoonOpen(true)}
+                      className="w-full sm:w-auto px-12 py-5 bg-brand-primary text-brand-secondary font-black rounded-full hover:bg-brand-primary-light transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(0,140,140,0.5)]"
+                    >
                       Aplica Hoy
                     </button>
-                    <button className="w-full sm:w-auto px-12 py-5 bg-transparent border-2 border-brand-silver/50 text-brand-accent font-bold rounded-full hover:bg-brand-secondary hover:border-brand-primary-light transition-all text-center backdrop-blur-md">
+                    <button 
+                      onClick={() => setIsMenuOpen(true)}
+                      className="w-full sm:w-auto px-12 py-5 bg-transparent border-2 border-brand-silver/50 text-brand-accent font-bold rounded-full hover:bg-brand-secondary hover:border-brand-primary-light transition-all text-center backdrop-blur-md"
+                    >
                       Conoce Más
                     </button>
                   </motion.div>
@@ -84,7 +95,7 @@ export default function Home() {
 
             {/* OTHER SECTIONS */}
             <PhilosophyScroll />
-            <MembersSection />
+            <MembersSection onJoinClick={() => setIsComingSoonOpen(true)} />
             <FooterCTA />
             
           </motion.div>
@@ -93,3 +104,4 @@ export default function Home() {
     </main>
   );
 }
+

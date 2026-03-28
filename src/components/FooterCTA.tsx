@@ -46,12 +46,26 @@ export default function FooterCTA() {
           <div className="absolute inset-0 bg-brand-primary-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         </motion.button>
 
-        <div className="mt-32 w-full flex flex-col md:flex-row justify-between items-center text-brand-silver/50 text-[10px] md:text-xs uppercase tracking-widest border-t border-brand-white/5 pt-8">
+        <div className="mt-32 w-full flex flex-col md:flex-row justify-between items-center text-brand-silver/50 text-[10px] md:text-xs uppercase tracking-widest border-t border-brand-white/5 pt-8 gap-6">
           <p>© {new Date().getFullYear()} KAMEMUN. Todos los derechos reservados.</p>
-          <div className="flex gap-8 mt-6 md:mt-0 font-bold">
-            <a href="#" className="hover:text-brand-primary-light transition-colors duration-300">Instagram</a>
-            <a href="#" className="hover:text-brand-primary-light transition-colors duration-300">LinkedIn</a>
-            <a href="#" className="hover:text-brand-primary-light transition-colors duration-300">Contacto</a>
+          <div className="flex gap-8 items-center font-bold">
+            <a 
+              href="https://www.instagram.com/_kamemun/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand-primary-light transition-colors duration-300"
+            >
+              Instagram
+            </a>
+            <span className="opacity-20">|</span>
+            <a 
+              href="https://agreda-portfolio.vercel.app" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand-primary-light transition-colors duration-300 lowercase italic"
+            >
+              creado por fotagreda
+            </a>
           </div>
         </div>
       </div>

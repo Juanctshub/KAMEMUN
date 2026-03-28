@@ -54,7 +54,19 @@ const Card = ({ item, index, progress, range, targetScale }: any) => {
   const iconRotation = useTransform(scrollYProgress, [0, 1], [-15, 15]);
 
   return (
-    <div ref={containerRef} className="h-[90vh] flex items-center justify-center sticky top-[5vh]">
+    <div ref={containerRef} className="h-[90vh] flex items-center justify-center sticky top-[5vh] px-4 md:px-0">
+      {/* DECORACIONES LATERALES - Resuelven la sensación de vacío */}
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-8 opacity-20 pointer-events-none">
+        <div className="w-[1px] h-32 bg-gradient-to-b from-transparent via-brand-primary to-transparent" />
+        <div className="w-2 h-2 rounded-full bg-brand-primary shadow-[0_0_10px_rgba(0,140,140,1)]" />
+        <div className="w-[1px] h-32 bg-gradient-to-t from-transparent via-brand-primary to-transparent" />
+      </div>
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-8 opacity-20 pointer-events-none">
+        <div className="w-[1px] h-32 bg-gradient-to-b from-transparent via-brand-primary-light to-transparent" />
+        <div className="w-2 h-2 rounded-full bg-brand-primary-light shadow-[0_0_10px_rgba(168,213,213,1)]" />
+        <div className="w-[1px] h-32 bg-gradient-to-t from-transparent via-brand-primary-light to-transparent" />
+      </div>
+
       <motion.div 
         style={{ 
           scale, 
