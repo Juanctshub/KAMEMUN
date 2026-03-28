@@ -54,26 +54,26 @@ const Card = ({ item, index, progress, range, targetScale }: any) => {
   const iconRotation = useTransform(scrollYProgress, [0, 1], [-15, 15]);
 
   return (
-    <div ref={containerRef} className="h-[90vh] flex items-center justify-center sticky top-[5vh] px-4 md:px-0">
+    <div ref={containerRef} className="h-[75vh] md:h-[90vh] flex items-center justify-center sticky top-[10vh] md:top-[5vh] px-4 md:px-0">
       {/* DECORACIONES LATERALES ENRIQUECIDAS - Resuelven la sensación de vacío */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 opacity-30 pointer-events-none">
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 opacity-30 pointer-events-none text-brand-primary">
         <div className="w-[1px] h-48 bg-gradient-to-b from-transparent via-brand-primary/50 to-transparent" />
         <div className="relative">
           <div className="w-4 h-4 rounded-full border border-brand-primary animate-pulse" />
           <div className="absolute inset-0 bg-brand-primary/20 blur-md rounded-full" />
         </div>
-        <div className="text-[10px] font-black tracking-[0.5em] uppercase vertical-text text-brand-primary/40 h-32 flex items-center">RESILIENCIA</div>
+        <div className="text-[10px] font-black tracking-[0.5em] uppercase vertical-text opacity-40 h-32 flex items-center">RESILIENCIA</div>
         <div className="w-[1px] h-48 bg-gradient-to-t from-transparent via-brand-primary/50 to-transparent" />
       </div>
 
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 opacity-30 pointer-events-none">
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 opacity-30 pointer-events-none text-brand-primary-light">
         <div className="w-[1px] h-48 bg-gradient-to-b from-transparent via-brand-primary-light/50 to-transparent" />
         <div className="group relative">
           <div className="w-10 h-10 border border-brand-primary-light/30 rounded-full flex items-center justify-center">
             <div className="w-2 h-2 bg-brand-primary-light rounded-full shadow-[0_0_15px_#A8D5D5]" />
           </div>
         </div>
-        <div className="text-[10px] font-black tracking-[0.5em] uppercase vertical-text text-brand-primary-light/40 h-32 flex items-center">SABIDURÍA</div>
+        <div className="text-[10px] font-black tracking-[0.5em] uppercase vertical-text opacity-40 h-32 flex items-center">SABIDURÍA</div>
         <div className="w-[1px] h-48 bg-gradient-to-t from-transparent via-brand-primary-light/50 to-transparent" />
       </div>
 
@@ -87,7 +87,7 @@ const Card = ({ item, index, progress, range, targetScale }: any) => {
           top: `calc(index * 15px)`,
           willChange: "transform, scale, opacity" 
         }} 
-        className={`flex flex-col relative w-full h-fit min-h-[55vh] md:h-[65vh] md:w-[75vw] mx-auto rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 lg:p-14 origin-top border border-brand-white/10 ${item.color} overflow-hidden transform-gpu shadow-2xl`}
+        className={`flex flex-col relative w-full h-fit min-h-[50vh] md:min-h-[55vh] md:h-[65vh] md:w-[75vw] mx-auto rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 lg:p-14 origin-top border border-brand-white/10 ${item.color} overflow-hidden transform-gpu shadow-2xl`}
       >
         <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none mix-blend-overlay z-0" />
         

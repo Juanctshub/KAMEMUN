@@ -32,7 +32,7 @@ export default function ComingSoon({ isOpen, onClose }: ComingSoonProps) {
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.9, y: 10, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-2xl bg-gradient-to-br from-brand-secondary via-brand-secondary to-brand-primary/20 p-12 md:p-20 rounded-[3rem] border border-brand-white/10 shadow-[0_0_100px_rgba(0,140,140,0.3)] overflow-hidden text-center flex flex-col items-center"
+            className="relative w-full max-w-2xl bg-gradient-to-br from-brand-secondary via-brand-secondary to-brand-primary/20 p-8 md:p-20 rounded-[2.5rem] md:rounded-[3rem] border border-brand-white/10 shadow-[0_0_100px_rgba(0,140,140,0.3)] overflow-hidden text-center flex flex-col items-center"
           >
             {/* Botón Cerrar */}
             <button 
