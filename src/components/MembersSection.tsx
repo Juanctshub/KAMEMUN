@@ -60,8 +60,7 @@ export default function MembersSection() {
                   <div className="absolute bottom-12 md:bottom-16 left-8 md:left-12 right-8 md:right-12 z-30 pointer-events-none">
                     <p className="text-brand-primary-light font-black tracking-[0.4em] uppercase text-[10px] md:text-sm mb-2 md:mb-3 opacity-90 drop-shadow-xl border-l-2 border-brand-primary pl-4">Secretaría General</p>
                     <h3 className="text-4xl md:text-7xl font-serif font-black text-brand-white leading-[0.9] tracking-tight drop-shadow-2xl">
-                      Antonella <br /> 
-                      <span className="text-brand-primary italic text-3xl md:text-[inherit]">Sciulli</span>
+                      Antonella <span className="text-brand-primary italic">Sciulli</span>
                     </h3>
                   </div>
                 </div>

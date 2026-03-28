@@ -133,7 +133,7 @@ export default function PhilosophyScroll() {
         <p className="text-brand-primary-light font-black tracking-[0.3em] uppercase mb-4 text-[10px] md:text-xs">Nuestra Esencia</p>
         <h2 className="text-5xl md:text-8xl lg:text-9xl font-serif font-black text-brand-accent tracking-tighter drop-shadow-2xl">
           Filosofía <br className="md:hidden" />
-          <span className="text-brand-primary italic">KAMEMUN</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-primary drop-shadow-[0_0_20px_rgba(0,140,140,0.8)] animate-pulse">KAMEMUN</span>
         </h2>
       </div>
 
