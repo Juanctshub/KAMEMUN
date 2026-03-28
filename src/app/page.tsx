@@ -10,6 +10,7 @@ import FooterCTA from "@/components/FooterCTA";
 import Navbar from "@/components/Navbar";
 import ComingSoon from "@/components/ComingSoon";
 import InstagramSection from "@/components/InstagramSection";
+import SGMessage from "@/components/SGMessage";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
   const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
 
   return (
-    <main className="relative min-h-screen bg-brand-secondary text-brand-accent overflow-hidden font-sans">
+    <main className="relative min-h-screen bg-brand-secondary text-brand-accent overflow-x-hidden font-sans">
       <LoadingScreen onComplete={() => setIsLoading(false)} />
       
       <ComingSoon isOpen={isComingSoonOpen} onClose={() => setIsComingSoonOpen(false)} />
@@ -34,7 +35,7 @@ export default function Home() {
             <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             
             {/* HERO SECTION */}
-            <div id="inicio" className="relative w-full min-h-screen pt-28 md:pt-48">
+            <div id="inicio" className="relative w-full min-h-screen pt-20 md:pt-48">
               <HeroBackground />
               <Hero3D />
 
@@ -97,6 +98,7 @@ export default function Home() {
             {/* OTHER SECTIONS */}
             <PhilosophyScroll />
             <MembersSection />
+            <SGMessage />
             <InstagramSection />
             <FooterCTA onJoinClick={() => setIsComingSoonOpen(true)} />
             

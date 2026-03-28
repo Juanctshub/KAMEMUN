@@ -6,8 +6,14 @@ import Image from "next/image";
 import { instagramPosts } from "@/data/instagramData";
 
 export default function InstagramSection() {
+  // CONFIGURACIÓN PARA EL USUARIO:
+  // Para que este feed sea 100% automático y real:
+  // 1. Ve a https://behold.so/ y crea una cuenta (es gratis).
+  // 2. Conecta tu Instagram y copia el "JSON URL".
+  // 3. Puedes usar ese URL para alimentar este componente dinámicamente.
+  
   return (
-    <section className="w-full py-32 bg-brand-secondary relative overflow-hidden">
+    <section id="instagram" className="w-full py-20 md:py-32 bg-brand-secondary relative overflow-hidden">
       {/* Glow Effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90vw] h-[50vh] bg-brand-primary/10 blur-[150px] rounded-full pointer-events-none" />
 

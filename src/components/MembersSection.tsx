@@ -45,18 +45,23 @@ export default function MembersSection() {
                     src="/images/m.jpg" 
                     alt="Antonella Sciulli - Secretaria General" 
                     fill 
-                    className="object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-[2000ms] scale-105 group-hover:scale-100"
+                    quality={100}
+                    className="object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-[2000ms] scale-105 group-hover:scale-100 brightness-110 contrast-110"
                     priority
+                    sizes="(max-width: 768px) 100vw, 580px"
                   />
+                  {/* Capa de Grano Cinematográfico para disimular pixelado y dar look editorial */}
+                  <div className="absolute inset-0 bg-noise opacity-[0.08] pointer-events-none mix-blend-overlay z-10" />
+                  
                   {/* Gradiente sutil inferior - MEJORADO para legibilidad del nombre */}
                   <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-brand-secondary via-brand-secondary/40 to-transparent z-20" />
                   
                   {/* Nombre y Cargo (Lo único que queda en el frente) */}
-                  <div className="absolute bottom-16 left-12 right-12 z-30 pointer-events-none">
-                    <p className="text-brand-primary-light font-black tracking-[0.4em] uppercase text-xs md:text-sm mb-3 opacity-90 drop-shadow-xl border-l-2 border-brand-primary pl-4">Secretaría General</p>
-                    <h3 className="text-5xl md:text-7xl font-serif font-black text-brand-white leading-[0.9] tracking-tight drop-shadow-2xl">
+                  <div className="absolute bottom-12 md:bottom-16 left-8 md:left-12 right-8 md:right-12 z-30 pointer-events-none">
+                    <p className="text-brand-primary-light font-black tracking-[0.4em] uppercase text-[10px] md:text-sm mb-2 md:mb-3 opacity-90 drop-shadow-xl border-l-2 border-brand-primary pl-4">Secretaría General</p>
+                    <h3 className="text-4xl md:text-7xl font-serif font-black text-brand-white leading-[0.9] tracking-tight drop-shadow-2xl">
                       Antonella <br /> 
-                      <span className="text-brand-primary italic">Sciulli</span>
+                      <span className="text-brand-primary italic text-3xl md:text-[inherit]">Sciulli</span>
                     </h3>
                   </div>
                 </div>

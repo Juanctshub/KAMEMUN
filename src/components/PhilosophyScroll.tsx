@@ -50,11 +50,12 @@ const Card = ({ item, index, progress, range, targetScale }: any) => {
   });
 
   const scale = useTransform(progress, range, [1, targetScale]);
+  const opacity = useTransform(progress, range, [1, 0.4]);
   // Efecto de rotación sutil para los íconos de fondo
   const iconRotation = useTransform(scrollYProgress, [0, 1], [-15, 15]);
 
   return (
-    <div ref={containerRef} className="h-[75vh] md:h-[90vh] flex items-center justify-center sticky top-[10vh] md:top-[5vh] px-4 md:px-0">
+    <div ref={containerRef} className="h-[80vh] md:h-[90vh] flex items-center justify-center sticky top-[12vh] md:top-[5vh] px-4 md:px-0">
       {/* DECORACIONES LATERALES ENRIQUECIDAS - Resuelven la sensación de vacío */}
       <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 opacity-30 pointer-events-none text-brand-primary">
         <div className="w-[1px] h-48 bg-gradient-to-b from-transparent via-brand-primary/50 to-transparent" />
@@ -77,24 +78,21 @@ const Card = ({ item, index, progress, range, targetScale }: any) => {
         <div className="w-[1px] h-48 bg-gradient-to-t from-transparent via-brand-primary-light/50 to-transparent" />
       </div>
 
-      {/* Background Glow Spots */}
-      <div className="absolute left-0 top-1/4 w-64 h-64 bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute right-0 bottom-1/4 w-64 h-64 bg-brand-primary-light/5 blur-[120px] rounded-full pointer-events-none" />
-
       <motion.div 
         style={{ 
           scale, 
-          top: `calc(index * 15px)`,
+          opacity,
+          top: `calc(index * 20px)`,
           willChange: "transform, scale, opacity" 
         }} 
-        className={`flex flex-col relative w-full h-fit min-h-[50vh] md:min-h-[55vh] md:h-[65vh] md:w-[75vw] mx-auto rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 lg:p-14 origin-top border border-brand-white/10 ${item.color} overflow-hidden transform-gpu shadow-2xl`}
+        className={`flex flex-col relative w-full h-[60vh] md:h-[65vh] md:w-[75vw] mx-auto rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 lg:p-14 origin-top border border-brand-white/10 ${item.color} overflow-hidden transform-gpu shadow-2xl`}
       >
-        <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none mix-blend-overlay z-0" />
+        <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none mix-blend-overlay z-0" />
         
-        {/* ICONO GIGANTE TEMÁTICO FLOTANTE - Alineación más sobria */}
+        {/* ICONO GIGANTE TEMÁTICO FLOTANTE */}
         <motion.div 
           style={{ rotate: iconRotation }} 
-          className="absolute -right-12 -bottom-12 md:-right-20 md:-bottom-20 opacity-[0.08] pointer-events-none z-0 transform-gpu"
+          className="absolute -right-16 -bottom-16 md:-right-20 md:-bottom-20 opacity-[0.1] pointer-events-none z-0 transform-gpu"
         >
           {item.IconComponent && (
             <item.IconComponent className="w-64 h-64 md:w-[400px] md:h-[400px] text-brand-white" />
@@ -103,16 +101,16 @@ const Card = ({ item, index, progress, range, targetScale }: any) => {
 
         <div className={`relative h-full flex flex-col justify-between z-10 ${item.textColor || "text-brand-accent"}`}>
           <div className="max-w-3xl drop-shadow-sm relative z-10 pt-2">
-            <p className="font-bold tracking-[0.25em] uppercase mb-3 text-[10px] md:text-xs opacity-90 backdrop-blur-sm inline-block px-3 py-1.5 rounded-full bg-brand-white/5 border border-brand-white/10">
+            <p className="font-bold tracking-[0.3em] uppercase mb-4 text-[10px] md:text-xs opacity-90 backdrop-blur-sm inline-block px-4 py-2 rounded-full bg-brand-white/10 border border-brand-white/10">
               {item.pre}
             </p>
-            <h2 className="text-3xl md:text-5xl lg:text-5xl font-serif font-black tracking-tight leading-[1.1] mb-4">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-black tracking-tight leading-[1.1] mb-4">
               {item.title}
             </h2>
           </div>
           
-          <div className="max-w-2xl mt-auto z-10 p-5 md:p-8 rounded-[1.5rem] md:rounded-[2rem] backdrop-blur-md bg-brand-secondary/40 border border-brand-white/5 shadow-xl">
-            <p className="text-sm md:text-lg lg:text-lg font-light leading-relaxed text-brand-accent/90">
+          <div className="max-w-2xl mt-auto z-10 p-6 md:p-8 rounded-[1.8rem] md:rounded-[2rem] backdrop-blur-md bg-brand-secondary/40 border border-brand-white/10 shadow-xl">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl font-light leading-relaxed text-brand-accent/90">
               {item.description}
             </p>
           </div>
@@ -130,11 +128,12 @@ export default function PhilosophyScroll() {
   });
 
   return (
-    <section id="filosofia" ref={container} className="relative mt-20 md:mt-0 w-full z-20 pb-32 overflow-hidden">
+    <section id="filosofia" ref={container} className="relative mt-20 md:mt-0 w-full z-20 pb-40 overflow-hidden">
       <div className="w-full text-center py-20 md:py-32 px-6 relative z-10">
-        <p className="text-brand-primary-light font-black tracking-[0.3em] uppercase mb-4 text-xs md:text-sm">Nuestra Esencia</p>
-        <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif font-black text-brand-accent tracking-tight drop-shadow-[0_20px_50px_rgba(0,140,140,0.4)]">
-          Filosofía KAMEMUN
+        <p className="text-brand-primary-light font-black tracking-[0.3em] uppercase mb-4 text-[10px] md:text-xs">Nuestra Esencia</p>
+        <h2 className="text-5xl md:text-8xl lg:text-9xl font-serif font-black text-brand-accent tracking-tighter drop-shadow-2xl">
+          Filosofía <br className="md:hidden" />
+          <span className="text-brand-primary italic">KAMEMUN</span>
         </h2>
       </div>
 
@@ -143,7 +142,6 @@ export default function PhilosophyScroll() {
         return (
           <Card 
             key={i} 
-            i={i} 
             item={item} 
             index={i} 
             progress={scrollYProgress} 
