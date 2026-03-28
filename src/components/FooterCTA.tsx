@@ -67,9 +67,12 @@ export default function FooterCTA({ onJoinClick }: FooterCTAProps) {
               href="https://agreda-portfolio.vercel.app" 
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-brand-primary-light transition-colors duration-300 lowercase italic"
+              className="relative hover:text-brand-primary-light transition-colors duration-300 lowercase italic group"
             >
-              creado por fotagreda
+              <span className="relative z-10 text-brand-primary-light/70 group-hover:text-brand-primary-light transition-all" style={{ textShadow: "0 0 10px rgba(168,213,213,0.4), 0 0 30px rgba(0,140,140,0.2)" }}>creado por fotagreda</span>
+              {/* Side Neon Glow Lines */}
+              <span className="absolute -left-4 top-1/2 -translate-y-1/2 w-2 h-[60%] bg-brand-primary-light/20 blur-[4px] rounded-full" />
+              <span className="absolute -right-4 top-1/2 -translate-y-1/2 w-2 h-[60%] bg-brand-primary-light/20 blur-[4px] rounded-full" />
             </a>
           </div>
         </div>
