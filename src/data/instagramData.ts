@@ -11,29 +11,29 @@ export interface InstagramPost {
 export const instagramPosts: InstagramPost[] = [
   {
     id: 1,
-    likes: "1.2k",
-    comments: "45",
-    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=800&auto=format&fit=crop",
-    link: "https://www.instagram.com/p/C1234567890/",
-    caption: "#KAMEMUN: Preparándonos para elevar el talento de Lara al siguiente nivel.",
-    date: "2 DÍAS"
+    likes: "482",
+    comments: "32",
+    image: "/images/post1.jpg", 
+    link: "https://www.instagram.com/_kamemun/",
+    caption: "¡Bienvenidos a la nueva era de la diplomacia larense! 🏛️ KAMEMUN nace como un espacio para el debate de alto nivel y la formación de líderes con resiliencia.",
+    date: "1 DÍA"
   },
   {
     id: 2,
-    likes: "2.5k",
-    comments: "82",
-    image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=800&auto=format&fit=crop",
-    link: "https://www.instagram.com/p/D2345678901/",
-    caption: "Diplomacia y resiliencia en cada palabra. El camino de la tortuga.",
-    date: "1 SEMANA"
+    likes: "612",
+    comments: "18",
+    image: "/images/post2.jpg",
+    link: "https://www.instagram.com/_kamemun/",
+    caption: "¿Estás listo para el Camino de la Tortuga? 🐢 El proceso de inscripciones para delegados y autoridades académicas está a punto de ser revelado.",
+    date: "4 DÍAS"
   },
   {
     id: 3,
-    likes: "3.1k",
-    comments: "156",
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop",
-    link: "https://www.instagram.com/p/E3456789012/",
-    caption: "¿Estás listo para trascender? Nuestras convocatorias están por llegar.",
-    date: "2 SEMANAS"
+    likes: "894",
+    comments: "105",
+    image: "/images/post3.jpg",
+    link: "https://www.instagram.com/_kamemun/",
+    caption: "Liderazgo Institucional. Nuestra Secretaría General trabaja incansablemente para garantizar que este modelo supere todas las expectativas académicas del país. ✨",
+    date: "1 SEMANA"
   }
 ];

@@ -4,8 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { BrainCircuit, Flag, Leaf, TreeDeciduous } from "lucide-react";
 
-// Eliminamos las imágenes "papa.png" y "r.png" que no cuadraban y usaremos iconos limpios de Lucide-React
-// relacionados al contexto de las fases para mayor elegancia y evitar recargar la interfaz.
 const philosophyItems = [
   {
     id: "01",
@@ -51,66 +49,39 @@ const Card = ({ item, index, progress, range, targetScale }: any) => {
 
   const scale = useTransform(progress, range, [1, targetScale]);
   const opacity = useTransform(progress, range, [1, 0.4]);
-  // Efecto de rotación sutil para los íconos de fondo
   const iconRotation = useTransform(scrollYProgress, [0, 1], [-15, 15]);
 
   return (
-    <div ref={containerRef} className="h-[80vh] md:h-[90vh] flex items-center justify-center sticky top-[12vh] md:top-[5vh] px-4 md:px-0">
-      {/* DECORACIONES LATERALES ENRIQUECIDAS - Resuelven la sensación de vacío */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 opacity-30 pointer-events-none text-brand-primary">
-        <div className="w-[1px] h-48 bg-gradient-to-b from-transparent via-brand-primary/50 to-transparent" />
-        <div className="relative">
-          <div className="w-4 h-4 rounded-full border border-brand-primary animate-pulse" />
-          <div className="absolute inset-0 bg-brand-primary/20 blur-md rounded-full" />
-        </div>
-        <div className="text-[10px] font-black tracking-[0.5em] uppercase vertical-text opacity-40 h-32 flex items-center">RESILIENCIA</div>
-        <div className="w-[1px] h-48 bg-gradient-to-t from-transparent via-brand-primary/50 to-transparent" />
-      </div>
-
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-12 opacity-30 pointer-events-none text-brand-primary-light">
-        <div className="w-[1px] h-48 bg-gradient-to-b from-transparent via-brand-primary-light/50 to-transparent" />
-        <div className="group relative">
-          <div className="w-10 h-10 border border-brand-primary-light/30 rounded-full flex items-center justify-center">
-            <div className="w-2 h-2 bg-brand-primary-light rounded-full shadow-[0_0_15px_#A8D5D5]" />
-          </div>
-        </div>
-        <div className="text-[10px] font-black tracking-[0.5em] uppercase vertical-text opacity-40 h-32 flex items-center">SABIDURÍA</div>
-        <div className="w-[1px] h-48 bg-gradient-to-t from-transparent via-brand-primary-light/50 to-transparent" />
-      </div>
-
+    <div ref={containerRef} className="h-screen md:h-[90vh] flex items-center justify-center sticky top-0 md:top-[5vh] px-4 md:px-0">
       <motion.div 
         style={{ 
           scale, 
           opacity,
-          top: `calc(index * 20px)`,
           willChange: "transform, scale, opacity" 
         }} 
-        className={`flex flex-col relative w-full h-[60vh] md:h-[65vh] md:w-[75vw] mx-auto rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 lg:p-14 origin-top border border-brand-white/10 ${item.color} overflow-hidden transform-gpu shadow-2xl`}
+        className={`flex flex-col relative w-full h-[70vh] md:h-[65vh] md:w-[75vw] mx-auto rounded-[3rem] p-8 md:p-14 overflow-hidden transform-gpu border border-brand-white/10 ${item.color} shadow-2xl`}
       >
-        <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none mix-blend-overlay z-0" />
+        <div className="absolute inset-0 bg-noise opacity-[0.03] z-0" />
         
-        {/* ICONO GIGANTE TEMÁTICO FLOTANTE */}
         <motion.div 
           style={{ rotate: iconRotation }} 
-          className="absolute -right-16 -bottom-16 md:-right-20 md:-bottom-20 opacity-[0.1] pointer-events-none z-0 transform-gpu"
+          className="absolute -right-16 -bottom-16 opacity-10 pointer-events-none z-0"
         >
-          {item.IconComponent && (
-            <item.IconComponent className="w-64 h-64 md:w-[400px] md:h-[400px] text-brand-white" />
-          )}
+          {item.IconComponent && <item.IconComponent className="w-64 h-64 md:w-[400px] md:h-[400px] text-brand-white" />}
         </motion.div>
 
         <div className={`relative h-full flex flex-col justify-between z-10 ${item.textColor || "text-brand-accent"}`}>
-          <div className="max-w-3xl drop-shadow-sm relative z-10 pt-2">
-            <p className="font-bold tracking-[0.3em] uppercase mb-4 text-[10px] md:text-xs opacity-90 backdrop-blur-sm inline-block px-4 py-2 rounded-full bg-brand-white/10 border border-brand-white/10">
+          <div className="pt-6">
+            <span className="text-[10px] md:text-xs font-black tracking-[0.4em] uppercase opacity-70 border-b border-current pb-2 mb-8 inline-block">
               {item.pre}
-            </p>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-black tracking-tight leading-[1.1] mb-4">
+            </span>
+            <h2 className="text-4xl md:text-6xl font-serif font-black leading-none tracking-tighter">
               {item.title}
             </h2>
           </div>
           
-          <div className="max-w-2xl mt-auto z-10 p-6 md:p-8 rounded-[1.8rem] md:rounded-[2rem] backdrop-blur-md bg-brand-secondary/40 border border-brand-white/10 shadow-xl">
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl font-light leading-relaxed text-brand-accent/90">
+          <div className="max-w-2xl bg-brand-secondary/40 backdrop-blur-xl p-8 rounded-[2.5rem] border border-brand-white/10">
+            <p className="text-base md:text-xl font-light leading-relaxed opacity-90">
               {item.description}
             </p>
           </div>
@@ -128,28 +99,60 @@ export default function PhilosophyScroll() {
   });
 
   return (
-    <section id="filosofia" ref={container} className="relative mt-20 md:mt-0 w-full z-20 pb-40 overflow-hidden">
-      <div className="w-full text-center py-20 md:py-32 px-6 relative z-10">
-        <p className="text-brand-primary-light font-black tracking-[0.3em] uppercase mb-4 text-[10px] md:text-xs">Nuestra Esencia</p>
-        <h2 className="text-5xl md:text-8xl lg:text-9xl font-serif font-black text-brand-accent tracking-tighter drop-shadow-2xl">
+    <section id="filosofia" ref={container} className="relative w-full bg-brand-secondary overflow-hidden">
+      {/* Intro Header */}
+      <div className="h-[40vh] md:h-[60vh] flex flex-col items-center justify-center text-center px-6">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-brand-primary-light font-black tracking-[0.5em] uppercase text-[10px] md:text-xs mb-6"
+        >
+          Fases de la Metodología
+        </motion.p>
+        <motion.h2 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          className="text-5xl md:text-9xl font-serif font-black text-brand-accent"
+        >
           Filosofía <br className="md:hidden" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-primary drop-shadow-[0_0_20px_rgba(0,140,140,0.8)] animate-pulse">KAMEMUN</span>
-        </h2>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-primary drop-shadow-[0_0_30px_rgba(0,140,140,0.6)] animate-pulse">KAMEMUN</span>
+        </motion.h2>
       </div>
 
-      {philosophyItems.map((item, i) => {
-        const targetScale = 1 - ( (philosophyItems.length - i) * 0.05);
-        return (
-          <Card 
-            key={i} 
-            item={item} 
-            index={i} 
-            progress={scrollYProgress} 
-            range={[i * 0.25, 1]} 
-            targetScale={targetScale} 
-          />
-        );
-      })}
+      {/* MOBILE SNAP CAROUSEL */}
+      <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4 px-6 pb-20">
+        {philosophyItems.map((item, i) => (
+          <div key={i} className="min-w-full snap-center h-[75vh] relative flex flex-col rounded-[3rem] p-8 border border-white/10 shadow-2xl overflow-hidden" style={{ backgroundColor: item.color.replace('bg-', '') === 'brand-secondary' ? '#000808' : item.color.replace('bg-', '') === 'brand-primary' ? '#008C8C' : '#A8D5D5' }}>
+             <div className="absolute inset-0 bg-noise opacity-5" />
+             <div className="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <span className="text-[10px] font-black tracking-widest uppercase opacity-60">Phase {item.id}</span>
+                  <h3 className={`text-4xl font-serif font-black mt-2 leading-tight ${item.textColor || "text-white"}`}>{item.title}</h3>
+                </div>
+                <div className="bg-black/20 backdrop-blur-md p-6 rounded-[2rem] border border-white/5">
+                  <p className={`text-sm font-light leading-relaxed ${item.textColor || "text-white/80"}`}>{item.description}</p>
+                </div>
+             </div>
+          </div>
+        ))}
+      </div>
+
+      {/* DESKTOP STACKED SCROLL */}
+      <div className="hidden md:block">
+        {philosophyItems.map((item, i) => {
+          const targetScale = 1 - ( (philosophyItems.length - i) * 0.05);
+          return (
+            <Card 
+              key={i} 
+              item={item} 
+              index={i} 
+              progress={scrollYProgress} 
+              range={[i * 0.25, 1]} 
+              targetScale={targetScale} 
+            />
+          );
+        })}
+      </div>
     </section>
   );
 }
