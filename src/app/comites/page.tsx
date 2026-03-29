@@ -40,7 +40,8 @@ const committees = [
     accentColor: "text-amber-400",
     glowColor: "rgba(217,119,6,0.15)",
     tag: "⚖️ Derecho",
-    number: "02"
+    number: "02",
+    href: "/comites/padrino"
   },
   {
     id: "sharon-tate",

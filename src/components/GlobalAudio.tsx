@@ -1,100 +1,139 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Volume2, VolumeX } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function GlobalAudio() {
+  const pathname = usePathname();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const localAudioRef = useRef<HTMLAudioElement | null>(null);
   const [isMuted, setIsMuted] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const fadeTarget = 0.6; // Volumen ligeramente superior para presencia
+  const fadeTarget = 0.6;
 
+  // Initialize Global Audio
   useEffect(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio("/audio/bgm.mp3");
       audioRef.current.loop = true;
       audioRef.current.volume = 0;
     }
+  }, []);
 
+  // Handle Global Audio Lifecycle & Interacted Playback
+  useEffect(() => {
     const audio = audioRef.current;
+    if (!audio) return;
 
-    const fadeIn = () => {
-      if (isMuted) return;
+    if (hasInteracted && !isMuted) {
+      // Check if we are in a page with local music
+      const isLocalMusicPage = pathname === "/comites/padrino";
+      
+      if (!isLocalMusicPage) {
+        // Normal Global Playback
+        if (audio.paused) {
+          audio.play().catch(console.error);
+        }
+        // Fade In
+        let vol = audio.volume;
+        const interval = setInterval(() => {
+          if (vol < fadeTarget) {
+            vol += 0.05;
+            audio.volume = Math.min(vol, fadeTarget);
+          } else {
+            clearInterval(interval);
+          }
+        }, 100);
+        return () => clearInterval(interval);
+      } else {
+        // Fade Out the Global one globally (to prioritize local)
+        let vol = audio.volume;
+        const interval = setInterval(() => {
+          if (vol > 0.02) {
+            vol -= 0.05;
+            audio.volume = Math.max(vol, 0);
+          } else {
+            audio.volume = 0;
+            // audio.pause(); // Don't pause, just keep it at 0 to resume later
+            clearInterval(interval);
+          }
+        }, 100);
+        return () => clearInterval(interval);
+      }
+    } else if (isMuted || !hasInteracted) {
+      audio.volume = 0;
+      audio.pause();
+    }
+  }, [hasInteracted, isMuted, pathname]);
+
+  // Handle LOCAL Audio (Padrino)
+  useEffect(() => {
+    if (pathname === "/comites/padrino" && hasInteracted && !isMuted) {
+      if (!localAudioRef.current) {
+        localAudioRef.current = new Audio("/audio/comites/padrino.mp3");
+        localAudioRef.current.loop = true;
+        localAudioRef.current.volume = 0;
+      }
+      
+      const local = localAudioRef.current;
+      local.play().catch(console.error);
+      
       let vol = 0;
       const interval = setInterval(() => {
         if (vol < fadeTarget) {
-          vol += 0.02;
-          audio.volume = Math.min(vol, fadeTarget);
+          vol += 0.05;
+          local.volume = Math.min(vol, fadeTarget);
         } else {
           clearInterval(interval);
         }
       }, 100);
-    };
+      return () => clearInterval(interval);
+    } else if (localAudioRef.current) {
+      // Fade out if leaving the page or muting
+      const local = localAudioRef.current;
+      let vol = local.volume;
+      const interval = setInterval(() => {
+        if (vol > 0.05) {
+          vol -= 0.05;
+          local.volume = Math.max(vol, 0);
+        } else {
+          local.volume = 0;
+          local.pause();
+          clearInterval(interval);
+        }
+      }, 50);
+      return () => clearInterval(interval);
+    }
+  }, [pathname, hasInteracted, isMuted]);
 
+  // Handle First Interaction
+  useEffect(() => {
     const handleInteraction = () => {
       if (!hasInteracted) {
         setHasInteracted(true);
-        audio.play().then(() => {
-          fadeIn();
-        }).catch(err => {
-          console.log("Playback blocked:", err);
-          // Si falla, reseteamos para reintento en el siguiente click
-          setHasInteracted(false);
-        });
       }
     };
-
-    // Listeners globales para detectar la primera interacción real
     window.addEventListener("mousedown", handleInteraction, { once: true });
     window.addEventListener("keydown", handleInteraction, { once: true });
     window.addEventListener("scroll", handleInteraction, { once: true });
     window.addEventListener("touchstart", handleInteraction, { once: true });
-
     return () => {
       window.removeEventListener("mousedown", handleInteraction);
       window.removeEventListener("keydown", handleInteraction);
       window.removeEventListener("scroll", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
     };
-  }, [hasInteracted, isMuted]);
+  }, [hasInteracted]);
 
   const toggleMute = () => {
-    if (!audioRef.current) return;
-    
-    if (isMuted) {
-      setIsMuted(false);
-      setHasInteracted(true); // Aseguramos estado si el botón es el primer click
-      audioRef.current.play().then(() => {
-        let vol = 0;
-        const interval = setInterval(() => {
-          if (vol < fadeTarget) {
-            vol += 0.05;
-            audioRef.current!.volume = Math.min(vol, fadeTarget);
-          } else {
-            clearInterval(interval);
-          }
-        }, 50);
-      });
-    } else {
-      setIsMuted(true);
-      let vol = audioRef.current.volume;
-      const interval = setInterval(() => {
-        if (vol > 0.05) {
-          vol -= 0.05;
-          audioRef.current!.volume = vol;
-        } else {
-          audioRef.current!.volume = 0;
-          audioRef.current!.pause();
-          clearInterval(interval);
-        }
-      }, 50);
-    }
+    setIsMuted(!isMuted);
+    if (!hasInteracted) setHasInteracted(true);
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-[100] flex items-center gap-4">
-      {/* Sutil Hint para Chrome/Safari */}
+    <div className="fixed bottom-8 right-8 z-[120] flex items-center gap-4">
       <AnimatePresence>
         {!hasInteracted && !isMuted && (
           <motion.div
@@ -112,9 +151,10 @@ export default function GlobalAudio() {
         onClick={toggleMute}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="relative w-14 h-14 bg-brand-primary/10 hover:bg-brand-primary/20 border border-brand-primary/30 backdrop-blur-xl rounded-full flex items-center justify-center text-brand-primary transition-colors shadow-[0_0_30px_rgba(0,140,140,0.2)]"
+        className="relative w-14 h-14 bg-black/60 hover:bg-black/80 border border-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white transition-colors shadow-2xl"
         aria-label="Toggle Background Music"
       >
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-brand-primary/10 to-transparent opacity-40" />
         <AnimatePresence mode="wait">
           {isMuted ? (
             <motion.div
@@ -138,7 +178,7 @@ export default function GlobalAudio() {
                   initial={{ scale: 0.8, opacity: 0.5 }}
                   animate={{ scale: 1.6, opacity: 0 }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute inset-0 rounded-full border border-brand-primary pointer-events-none"
+                  className="absolute inset-0 rounded-full border border-white/20 pointer-events-none"
                 />
               )}
             </motion.div>
