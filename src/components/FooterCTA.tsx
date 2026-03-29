@@ -51,8 +51,7 @@ export default function FooterCTA({ onJoinClick }: FooterCTAProps) {
           <div className="absolute inset-0 bg-brand-primary-light opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         </motion.button>
 
-        <div className="mt-32 w-full flex flex-col md:flex-row justify-between items-center text-brand-silver/50 text-[10px] md:text-xs uppercase tracking-widest border-t border-brand-white/5 pt-8 gap-6">
-          <p>© {new Date().getFullYear()} KAMEMUN. Todos los derechos reservados.</p>
+        <div className="mt-32 w-full flex flex-col items-center text-brand-silver/50 text-[10px] md:text-xs uppercase tracking-widest border-t border-brand-white/5 pt-8 pb-24 md:pb-8 gap-4">
           <div className="flex gap-8 items-center font-bold">
             <a 
               href="https://www.instagram.com/_kamemun/" 
@@ -70,11 +69,11 @@ export default function FooterCTA({ onJoinClick }: FooterCTAProps) {
               className="relative hover:text-brand-primary-light transition-colors duration-300 lowercase italic group"
             >
               <span className="relative z-10 text-brand-primary-light/70 group-hover:text-brand-primary-light transition-all" style={{ textShadow: "0 0 10px rgba(168,213,213,0.4), 0 0 30px rgba(0,140,140,0.2)" }}>creado por fotagreda</span>
-              {/* Side Neon Glow Lines */}
               <span className="absolute -left-4 top-1/2 -translate-y-1/2 w-2 h-[60%] bg-brand-primary-light/20 blur-[4px] rounded-full" />
               <span className="absolute -right-4 top-1/2 -translate-y-1/2 w-2 h-[60%] bg-brand-primary-light/20 blur-[4px] rounded-full" />
             </a>
           </div>
+          <p className="opacity-60">© {new Date().getFullYear()} KAMEMUN. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
