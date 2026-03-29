@@ -24,7 +24,8 @@ const committees = [
     accentColor: "text-red-400",
     glowColor: "rgba(220,38,38,0.15)",
     tag: "🔴 Alto Riesgo",
-    number: "01"
+    number: "01",
+    href: "/comites/ndrangheta"
   },
   {
     id: "padrino",
@@ -286,16 +287,20 @@ export default function ComitesPage() {
               {/* Main 5 Committees - 2 on top, 3 on bottom for desktop */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
                 {committees.slice(0, 5).map((c, i) => (
-                  <motion.div
-                    key={c.id}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15 + i * 0.08, duration: 0.7 }}
-                    className={`group relative rounded-2xl md:rounded-[2rem] bg-gradient-to-br ${c.gradient} border ${c.border} p-6 md:p-9 overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2`}
-                    style={{ boxShadow: `0 0 0 0 transparent` }}
-                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = `0 20px 80px ${c.glowColor}`}
-                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = `0 0 0 0 transparent`}
+                  <Link 
+                    key={c.id} 
+                    href={c.href || "#"}
+                    className={`${!c.href ? 'pointer-events-none' : ''}`}
                   >
+                    <motion.div
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 + i * 0.08, duration: 0.7 }}
+                      className={`group relative h-full rounded-2xl md:rounded-[2rem] bg-gradient-to-br ${c.gradient} border ${c.border} p-6 md:p-9 overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2`}
+                      style={{ boxShadow: `0 0 0 0 transparent` }}
+                      onMouseEnter={(e) => e.currentTarget.style.boxShadow = `0 20px 80px ${c.glowColor}`}
+                      onMouseLeave={(e) => e.currentTarget.style.boxShadow = `0 0 0 0 transparent`}
+                    >
                     {/* Noise */}
                     <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none" />
                     
@@ -343,7 +348,8 @@ export default function ComitesPage() {
                       </div>
                     </div>
                   </motion.div>
-                ))}
+                </Link>
+              ))}
               </div>
 
               {/* Prensa - Full Width Special Card */}
