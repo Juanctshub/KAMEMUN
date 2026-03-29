@@ -162,8 +162,8 @@ export default function NdranghetaPage() {
                      <div className="w-12 h-[1px] bg-red-900/40" />
                    </div>
 
-                   {/* ARREGLADO: TÍTULO EN UNA SOLA PIEZA TIPO MARCA */}
-                   <h1 className="text-7xl md:text-[14rem] font-serif font-black tracking-[-0.07em] leading-none mb-4 md:mb-0 text-white select-none pointer-events-none drop-shadow-[0_20px_80px_rgba(0,0,0,1)]">
+                   {/* ARREGLADO: TÍTULO EN UNA SOLA PIEZA TIPO MARCA - OPTIMIZADO PARA MÓVIL */}
+                   <h1 className="text-[11vw] md:text-[14rem] font-serif font-black tracking-[-0.07em] leading-none mb-4 md:mb-0 text-white select-none pointer-events-none drop-shadow-[0_20px_80px_rgba(0,0,0,1)]">
                      L'NDRANGHETA
                    </h1>
                    
@@ -189,8 +189,8 @@ export default function NdranghetaPage() {
             </section>
 
             {/* NARRATIVA HISTÓRICA: EL DOSSIER FÍSICO */}
-            <section className="relative w-full py-60 px-6">
-              <div className="max-w-6xl mx-auto space-y-72">
+            <section className="relative w-full py-32 md:py-60 px-6">
+              <div className="max-w-6xl mx-auto space-y-40 md:space-y-72">
                 
                 {/* ACTO 1: EL PUNTO DE INFLEXIÓN */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -257,15 +257,15 @@ export default function NdranghetaPage() {
             </section>
 
             {/* CONSEJO DE FAMILIAS: EL "SINDICATO" */}
-            <section className="w-full py-40 px-6 bg-[#030201] border-t border-red-950/10">
+            <section className="w-full py-32 md:py-40 px-6 bg-[#030201] border-t border-red-950/10">
               <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col items-center mb-32 text-center">
+                <div className="flex flex-col items-center mb-24 md:mb-32 text-center">
                   <div className="w-16 h-[1px] bg-red-800 mb-8" />
                   <h2 className="text-5xl md:text-8xl font-serif font-black text-white italic tracking-tighter mb-4">L'Onorata Società</h2>
                   <p className="text-red-600 font-mono text-[11px] tracking-[0.8em] uppercase">Estructura de Poder Calabria 2030</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
                     { n: "Pelle-Vottari", r: "NARCO-FINANZAS", icon: Globe, c: "Dominio de la logística transatlántica." },
                     { n: "Nirta-Strangio", r: "BRAZO ARMADO", icon: Crosshair, c: "Guardianes de la tradición y el acero." },
@@ -291,14 +291,14 @@ export default function NdranghetaPage() {
             </section>
 
             {/* FOOTER CINEMÁTICO: LA SENTENCIA */}
-            <footer className="w-full py-60 bg-black border-t border-red-950/20 flex flex-col items-center justify-center text-center px-6">
+            <footer className="w-full py-32 md:py-60 bg-black border-t border-red-950/20 flex flex-col items-center justify-center text-center px-6">
                <motion.div
                  initial={{ opacity: 0, y: 20 }}
                  whileInView={{ opacity: 1, y: 0 }}
-                 className="relative mb-24"
+                 className="relative mb-16 md:mb-24"
                >
                  <div className="absolute inset-0 bg-red-700/10 blur-[100px] rounded-full" />
-                 <h2 className="text-6xl md:text-[10rem] font-serif font-black text-white/90 tracking-tighter leading-none mb-8">
+                 <h2 className="text-5xl md:text-[10rem] font-serif font-black text-white/90 tracking-tighter leading-none mb-8">
                    ¿UNIDAD O <br /><span className="text-red-800 italic">DESTRUCCIÓN?</span>
                  </h2>
                  <p className="text-red-100/20 font-mono text-[10px] md:text-xs tracking-[0.6em] uppercase">El imperio calabrés decide su destino bajo tu mando.</p>
