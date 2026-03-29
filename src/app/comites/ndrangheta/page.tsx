@@ -202,6 +202,12 @@ export default function NdranghetaPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 >
+                  <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
+                    <div className="flex items-center gap-2 px-4 py-1.5 bg-red-900/20 border border-red-500/10 rounded-full">
+                      <Target className="w-3.5 h-3.5 text-red-500" />
+                      <span className="text-[9px] font-black tracking-widest text-red-400">MODALIDAD: MIXTO / AGENCIA</span>
+                    </div>
+                  </div>
                   <p className="text-red-500 font-mono text-[10px] md:text-sm tracking-[0.6em] uppercase mb-4 md:mb-6 flex items-center justify-center gap-4">
                     <span className="w-10 h-[1px] bg-red-800" />
                     CÓDIGO DE HONOR
@@ -262,26 +268,47 @@ export default function NdranghetaPage() {
                   <p className="text-red-500 font-mono text-[10px] tracking-[0.4em] uppercase">EXPEDIENTE 2030 // OMERTA</p>
                 </div>
 
-                <div className="space-y-16">
-                  <motion.p
+                <div className="space-y-24 relative">
+                  {/* Bloque 1: La Tormenta Perfecta */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="relative"
+                  >
+                    <span className="text-red-600 font-mono text-[10px] tracking-[0.5em] mb-4 block">01. LA TORMENTA PERFECTA</span>
+                    <p className="text-white/90 text-xl md:text-3xl font-serif leading-[1.6] md:leading-[1.8] tracking-tight">
+                      El año <span className="text-red-500 font-black italic underline decoration-red-900 underline-offset-8">2030</span> marca el punto de inflexión para la organización criminal más hermética del planeta. Tras décadas de dominio absoluto sobre el tráfico transatlántico y las finanzas europeas, la ’Ndrangheta se enfrenta a una tormenta perfecta: una ofensiva judicial sin precedentes y el asedio de coaliciones internacionales que buscan heredar su hegemonía.
+                    </p>
+                  </motion.div>
+
+                  {/* Bloque 2: Guerra de Desgaste */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="relative pl-8 md:pl-20 border-l border-red-900/40"
+                  >
+                    <span className="text-red-600 font-mono text-[10px] tracking-[0.5em] mb-4 block">02. GUERRA DE DESGASTE</span>
+                    <p className="text-white/60 text-lg md:text-2xl font-light leading-[1.8]">
+                      Los fantasmas del pasado han despertado, y los cimientos de la organización comienzan a agrietarse bajo el peso de la traición y el acero. El conflicto ha escalado más allá de las fronteras italianas; mafias euroasiáticas y carteles emergentes han iniciado una guerra de desgaste para desmantelar el monopolio calabrés, obligando a las familias a decidir entre la unidad absoluta o el exterminio individual.
+                    </p>
+                  </motion.div>
+
+                  {/* Bloque 3: Códigos de la Vieja Escuela */}
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-white/90 text-xl md:text-3xl font-serif leading-[1.6] md:leading-[1.8] tracking-tight"
+                    className="relative bg-white/[0.02] p-8 md:p-12 rounded-[2rem] border border-white/5"
                   >
-                    El año <span className="text-red-500 font-black italic underline decoration-red-900 underline-offset-8">2030</span> marca el punto de inflexión para la organización criminal más hermética del planeta. Tras décadas de dominio absoluto sobre el tráfico transatlántico y las finanzas europeas, se enfrenta a una tormenta perfecta.
-                  </motion.p>
+                    <span className="text-red-600 font-mono text-[10px] tracking-[0.5em] mb-4 block text-center">03. CÓDIGOS DE HONOR</span>
+                    <p className="text-white/70 text-base md:text-xl font-light leading-[1.8] text-center max-w-2xl mx-auto">
+                      No se trata solo de proteger las rutas comerciales, sino de gestionar una crisis interna donde los negocios entre clanes y los pactos de sangre son la única moneda de cambio frente a enemigos que no respetan los códigos de la vieja escuela.
+                    </p>
+                  </motion.div>
 
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="text-white/50 text-base md:text-xl font-light leading-[1.9] max-w-3xl ml-auto text-right border-r-2 border-red-950 pr-8"
-                  >
-                    Fantasmas del pasado han despertado, agrietando los cimientos bajo el peso de la traición y el acero. El conflicto ha escalado; mafias euroasiáticas y carteles emergentes inician una guerra de desgaste para desmantelar el monopolio calabrés.
-                  </motion.p>
-
+                  {/* Bloque Final: El Destino */}
                   <div className="py-24 text-center">
                     <motion.h2 
                       initial={{ opacity: 0, scale: 0.9 }}
@@ -292,7 +319,7 @@ export default function NdranghetaPage() {
                     </motion.h2>
                     <div className="flex items-center justify-center gap-3">
                       <div className="w-12 h-[1px] bg-red-600/20" />
-                      <p className="text-white/20 font-mono text-[9px] tracking-[0.5em] uppercase">El imperio decide su destino</p>
+                      <p className="text-white/20 font-mono text-[9px] tracking-[0.5em] uppercase">El imperio calabrés decide su destino…</p>
                       <div className="w-12 h-[1px] bg-red-600/20" />
                     </div>
                   </div>
