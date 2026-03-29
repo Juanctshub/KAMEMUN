@@ -20,24 +20,26 @@ function VillaLoader({ onComplete }: { onComplete: () => void }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Capture capturedCanvas as a constant to satisfy TypeScript
+    const capturedCanvas = canvas;
+    const capturedCtx = ctx;
+
     let animationFrameId: number;
     let particles: Particle[] = [];
     const particleCount = 450;
     
     const resize = () => {
-      if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      capturedCanvas.width = window.innerWidth;
+      capturedCanvas.height = window.innerHeight;
     };
     window.addEventListener("resize", resize);
     resize();
 
     const getVillaPoints = () => {
       const points: {x: number, y: number}[] = [];
-      if (!canvas) return points;
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      const scale = Math.min(canvas.width, canvas.height) * 0.4;
+      const centerX = capturedCanvas.width / 2;
+      const centerY = capturedCanvas.height / 2;
+      const scale = Math.min(capturedCanvas.width, capturedCanvas.height) * (window.innerWidth < 768 ? 0.35 : 0.45);
 
       // Simple House Shape
       for (let x = -0.6; x <= 0.6; x += 0.08) points.push({x: centerX + x * scale, y: centerY + 0.3 * scale});
@@ -59,8 +61,8 @@ function VillaLoader({ onComplete }: { onComplete: () => void }) {
       color: string;
 
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * capturedCanvas.width;
+        this.y = Math.random() * capturedCanvas.height;
         this.vx = (Math.random() - 0.5) * 4;
         this.vy = (Math.random() - 0.5) * 4;
         this.size = Math.random() * 2 + 0.5;
@@ -71,8 +73,8 @@ function VillaLoader({ onComplete }: { onComplete: () => void }) {
         if (phase === 1) {
           this.x += this.vx;
           this.y += this.vy;
-          if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-          if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+          if (this.x < 0 || this.x > capturedCanvas.width) this.vx *= -1;
+          if (this.y < 0 || this.y > capturedCanvas.height) this.vy *= -1;
         } else if (phase >= 2) {
           const target = targetPoints[index % targetPoints.length];
           this.x += (target.x - this.x) * 0.06;
@@ -81,11 +83,10 @@ function VillaLoader({ onComplete }: { onComplete: () => void }) {
       }
 
       draw() {
-        if (!ctx) return;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+        capturedCtx.fillStyle = this.color;
+        capturedCtx.beginPath();
+        capturedCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        capturedCtx.fill();
       }
     }
 
@@ -93,8 +94,7 @@ function VillaLoader({ onComplete }: { onComplete: () => void }) {
     particles = Array.from({ length: particleCount }, () => new Particle());
 
     const animate = () => {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      capturedCtx.clearRect(0, 0, capturedCanvas.width, capturedCanvas.height);
       particles.forEach((p, i) => {
         p.update(phase, villaPoints, i);
         p.draw();
@@ -204,37 +204,40 @@ export default function NdranghetaPage() {
                 <source src="/videos/comites/padrino.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-[#050403]/60" />
+              <div className="absolute inset-0 bg-radial-gradient(circle, transparent 20%, #050403 90%) md:hidden" />
             </div>
-            <div className="relative z-10 text-center px-6">
-              <span className="inline-block px-4 py-1.5 border border-amber-900/30 rounded-full text-[10px] tracking-[0.6em] uppercase text-amber-500/60 mb-8 bg-black/20">Dossier Clasificado</span>
-              <h1 className="text-[12vw] md:text-[9rem] font-black tracking-[-0.04em] leading-none text-white">L'NDRANGHETA</h1>
-              <p className="mt-4 text-xl md:text-3xl font-light italic text-amber-100/40">Donde la sangre escribe la historia</p>
-              <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }} className="mt-16 flex flex-center gap-4 text-white/20 items-center justify-center">
+            <div className="relative z-10 text-center px-4">
+              <span className="inline-block px-4 py-1.5 border border-amber-900/30 rounded-full text-[9px] md:text-[10px] tracking-[0.6em] uppercase text-amber-500/60 mb-8 bg-black/20 backdrop-blur-sm">Dossier Clasificado</span>
+              <h1 className="text-[14vw] md:text-[9rem] font-black tracking-[-0.04em] leading-tight md:leading-none text-white drop-shadow-2xl">L'NDRANGHETA</h1>
+              <p className="mt-4 text-lg md:text-3xl font-light italic text-amber-100/40">Donde la sangre escribe la historia</p>
+              <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }} className="mt-16 flex flex-col gap-4 text-white/20 items-center justify-center">
+                <span className="text-[8px] tracking-[0.5em] uppercase font-bold md:block hidden">Deslizar para revelar</span>
                 <ChevronDown className="w-6 h-6" />
               </motion.div>
             </div>
           </section>
 
           {/* TEXTO INFORMATIVO (LOS 3 PÁRRAFOS DEL USUARIO) */}
-          <section className="relative py-40 px-6">
-            <div className="max-w-4xl mx-auto space-y-40">
+          <section className="relative py-32 md:py-48 px-6 overflow-hidden">
+            <div className="max-w-4xl mx-auto space-y-32 md:space-y-48 relative z-10">
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                <h2 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">El año 2030 marca el <span className="text-amber-600 italic">punto de inflexión...</span></h2>
-                <p className="text-lg md:text-2xl font-light text-white/50 leading-relaxed">
+                <h2 className="text-3xl md:text-6xl font-black text-white leading-tight mb-8">El año 2030 marca el <span className="text-amber-600 italic">punto de inflexión...</span></h2>
+                <p className="text-base md:text-2xl font-light text-white/60 leading-relaxed text-justify md:text-left">
                   Tras décadas de dominio absoluto sobre el tráfico transatlántico y las finanzas europeas, la ’Ndrangheta se enfrenta a una tormenta perfecta: una ofensiva judicial sin precedentes y el asedio de coaliciones internacionales que buscan heredar su hegemonía. Los fantasmas del pasado han despertado, y los cimientos de la organización comienzan a agrietarse bajo el peso de la traición y el acero.
                 </p>
               </motion.div>
 
-              <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="text-right">
-                <p className="text-2xl md:text-4xl font-serif italic text-white leading-[1.4] mb-8">"El conflicto ha escalado <span className="text-amber-600">más allá de las fronteras</span> italianas..."</p>
-                <p className="text-lg md:text-xl text-white/40 leading-relaxed ml-auto max-w-3xl">
+              <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:text-right">
+                <p className="text-xl md:text-4xl font-serif italic text-white leading-[1.4] mb-8">"El conflicto ha escalado <span className="text-amber-600">más allá de las fronteras</span> italianas..."</p>
+                <div className="w-full h-px bg-amber-900/20 mb-8 md:hidden" />
+                <p className="text-base md:text-xl text-white/40 leading-relaxed md:ml-auto max-w-3xl text-justify md:text-right">
                   Mafias euroasiáticas y carteles emergentes han iniciado una guerra de desgaste para desmantelar el monopolio calabrés, obligando a las familias a decidir entre la unidad absoluta o el exterminio individual. No se trata solo de proteger las rutas comerciales, sino de gestionar una crisis interna donde los negocios entre clanes y los pactos de sangre son la única moneda de cambio frente a enemigos que no respetan los códigos de la vieja escuela.
                 </p>
               </motion.div>
 
               <div className="text-center py-20 border-y border-amber-900/10">
-                <h3 className="text-5xl md:text-8xl font-black text-white tracking-tighter mb-4">¿UNIDAD O <br/><span className="text-amber-700 italic">DESTRUCCIÓN?</span></h3>
-                <p className="text-amber-500 font-mono text-[10px] tracking-[0.8em] uppercase">El imperio calabrés decide su destino</p>
+                <h3 className="text-4xl md:text-8xl font-black text-white tracking-tighter mb-4 leading-none">¿UNIDAD O <br/><span className="text-amber-700 italic">DESTRUCCIÓN?</span></h3>
+                <p className="text-amber-500 font-mono text-[9px] md:text-[10px] tracking-[0.8em] uppercase px-4 leading-relaxed">El imperio calabrés decide su destino</p>
               </div>
             </div>
           </section>
