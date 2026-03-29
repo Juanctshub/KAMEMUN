@@ -29,7 +29,7 @@ export default function GlobalAudio() {
 
     if (hasInteracted && !isMuted) {
       // Check if we are in a page with local music
-      const isLocalMusicPage = pathname === "/comites/padrino";
+      const isLocalMusicPage = pathname === "/comites/ndrangheta";
       
       if (!isLocalMusicPage) {
         // Normal Global Playback
@@ -68,9 +68,9 @@ export default function GlobalAudio() {
     }
   }, [hasInteracted, isMuted, pathname]);
 
-  // Handle LOCAL Audio (Padrino)
+  // Handle LOCAL Audio (Padrino/Ndrangheta)
   useEffect(() => {
-    if (pathname === "/comites/padrino" && hasInteracted && !isMuted) {
+    if (pathname === "/comites/ndrangheta" && hasInteracted && !isMuted) {
       if (!localAudioRef.current) {
         localAudioRef.current = new Audio("/audio/comites/padrino.mp3");
         localAudioRef.current.loop = true;

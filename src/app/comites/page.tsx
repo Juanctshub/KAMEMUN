@@ -7,7 +7,7 @@ import Link from "next/link";
 import { 
   Skull, Scale, Search, BookOpen, Globe, Camera,
   ArrowLeft, Sparkles, AlertTriangle, Shield, ChevronRight,
-  Crosshair, Fingerprint
+  Crosshair, Fingerprint, Lock
 } from "lucide-react";
 
 const committees = [
@@ -23,7 +23,7 @@ const committees = [
     border: "border-red-500/20",
     accentColor: "text-red-400",
     glowColor: "rgba(220,38,38,0.15)",
-    tag: "🔴 Alto Riesgo",
+    tag: "💰 Crisis",
     number: "01",
     href: "/comites/ndrangheta"
   },
@@ -33,15 +33,15 @@ const committees = [
     type: "CORTE",
     modality: "Mixta/Individual · Mixta/Agencia",
     theme: "Tribunal Judicial",
-    description: "Jurados, magistrados, defensa y fiscalía. Un juicio que definirá el destino de un imperio criminal bajo el peso implacable de la ley.",
-    icon: Scale,
-    gradient: "from-amber-950 via-amber-900/60 to-black",
-    border: "border-amber-500/20",
-    accentColor: "text-amber-400",
-    glowColor: "rgba(217,119,6,0.15)",
-    tag: "⚖️ Derecho",
+    description: "PRÓXIMAMENTE // EXPEDIENTE BAJO SELLADO JUDICIAL. ACCESO RESTRINGIDO.",
+    icon: Lock,
+    gradient: "from-zinc-950 via-zinc-900 to-black",
+    border: "border-zinc-800",
+    accentColor: "text-zinc-600",
+    glowColor: "rgba(255,255,255,0.05)",
+    tag: "🔒 BLOQUEADO",
     number: "02",
-    href: "/comites/padrino"
+    href: "#"
   },
   {
     id: "sharon-tate",
