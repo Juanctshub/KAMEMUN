@@ -29,7 +29,7 @@ export default function GlobalAudio() {
 
     if (hasInteracted && !isMuted) {
       // Check if we are in a page with local music
-      const isLocalMusicPage = pathname === "/comites/ndrangheta";
+      const isLocalMusicPage = pathname === "/comites/ndrangheta" || pathname === "/comites/padrino";
       
       if (!isLocalMusicPage) {
         // Normal Global Playback
@@ -56,7 +56,6 @@ export default function GlobalAudio() {
             audio.volume = Math.max(vol, 0);
           } else {
             audio.volume = 0;
-            // audio.pause(); // Don't pause, just keep it at 0 to resume later
             clearInterval(interval);
           }
         }, 100);
@@ -70,17 +69,29 @@ export default function GlobalAudio() {
 
   // Handle LOCAL Audio (Padrino/Ndrangheta)
   useEffect(() => {
-    if (pathname === "/comites/ndrangheta" && hasInteracted && !isMuted) {
-      if (!localAudioRef.current) {
-        localAudioRef.current = new Audio("/audio/comites/padrino.mp3");
+    const isPadrino = pathname === "/comites/padrino";
+    const isNdrangheta = pathname === "/comites/ndrangheta";
+    const isLocalPage = isPadrino || isNdrangheta;
+
+    if (isLocalPage && hasInteracted && !isMuted) {
+      const trackPath = isPadrino ? "/audio/comites/money.mp3" : "/audio/comites/padrino.mp3";
+      
+      // If we don't have an instance or the track changed
+      if (!localAudioRef.current || localAudioRef.current.src.includes(trackPath) === false) {
+        if (localAudioRef.current) {
+          localAudioRef.current.pause();
+        }
+        localAudioRef.current = new Audio(trackPath);
         localAudioRef.current.loop = true;
         localAudioRef.current.volume = 0;
       }
       
       const local = localAudioRef.current;
-      local.play().catch(console.error);
+      if (local.paused) {
+        local.play().catch(console.error);
+      }
       
-      let vol = 0;
+      let vol = local.volume;
       const interval = setInterval(() => {
         if (vol < fadeTarget) {
           vol += 0.05;
@@ -91,7 +102,7 @@ export default function GlobalAudio() {
       }, 100);
       return () => clearInterval(interval);
     } else if (localAudioRef.current) {
-      // Fade out if leaving the page or muting
+      // Fade out if leaving local pages or muting
       const local = localAudioRef.current;
       let vol = local.volume;
       const interval = setInterval(() => {
