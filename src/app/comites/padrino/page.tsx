@@ -6,7 +6,7 @@ import NextLink from "next/link";
 import { 
   ArrowLeft, Landmark, Gavel, Scale, Library, BookOpen, 
   ShieldCheck, FileText, ChevronDown, Lock, Users, Info,
-  Search, Award, Scroll, Balance, ShieldAlert, Briefcase, Volume2, VolumeX
+  Search, Award, Scroll, Shield, Briefcase, Volume2, VolumeX, AlertTriangle
 } from "lucide-react";
 
 /* ===== AMBIENTE JUDICIAL (LUCES FRÍAS) ===== */
@@ -126,7 +126,7 @@ function MonumentTitle() {
         className="relative"
       >
         <h1 className="text-[16vw] md:text-[11rem] font-serif font-black text-white leading-[0.8] mb-8 tracking-tighter uppercase drop-shadow-[0_20px_60px_rgba(0,0,0,1)]">
-           JUICIO DEL <br/> 
+           JUICIO DEL <br /> 
            <span className="text-slate-300 italic tracking-[-0.02em]">PADRINO</span>
         </h1>
         <div className="h-[1px] w-full max-w-2xl mx-auto bg-gradient-to-r from-transparent via-slate-600 to-transparent" />
@@ -239,11 +239,11 @@ export default function PadrinoPage() {
                 <JudicialAmbient>
                    <div className="flex items-center gap-10 mb-16 justify-center">
                       <div className="h-[2px] w-24 bg-gradient-to-r from-transparent to-slate-800" />
-                      <Balance className="w-8 h-8 text-slate-700" />
+                      <Scale className="w-8 h-8 text-slate-700" />
                       <div className="h-[2px] w-24 bg-gradient-to-l from-transparent to-slate-800" />
                    </div>
                    <h2 className="text-[13vw] md:text-[8rem] font-serif font-black text-white leading-[0.8] tracking-tighter mb-16 uppercase drop-shadow-2xl text-center">
-                      LA <br /><span className="text-[#94a3b8] italic border-b-4 border-slate-800 pb-4">SENTENCIA.</span>
+                      LA <br /> <span className="text-[#94a3b8] italic border-b-4 border-slate-800 pb-4">SENTENCIA.</span>
                    </h2>
                    <p className="text-2xl md:text-4xl font-light text-slate-400 leading-relaxed md:leading-[1.7] text-justify md:text-center max-w-4xl mx-auto select-none">
                       Tras décadas de dominio transatlántico, la ’Ndrangheta se enfrenta a una tormenta judicial sin precedentes. La captura del “Padrino” ha puesto al descubierto una red masiva de evasión fiscal y lavado de activos que amenaza los cimientos económicos de Europa.
@@ -253,7 +253,9 @@ export default function PadrinoPage() {
                 <div className="flex flex-col items-center justify-center text-center py-48 border-2 border-slate-900 bg-slate-950/40 rounded-[6rem] relative overflow-hidden group">
                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
                    <h3 className="text-[18vw] md:text-[14rem] font-serif font-black text-white tracking-widest leading-none mb-12 italic select-none opacity-5">LEX</h3>
-                   <Fingerprint className="w-20 h-20 text-slate-900 mb-12" />
+                   <div className="w-20 h-20 rounded-full border border-slate-800 flex items-center justify-center bg-black mb-12">
+                      <Shield className="w-10 h-10 text-slate-800" />
+                   </div>
                    <div className="w-32 h-[1px] bg-slate-800 mb-12" />
                    <p className="text-slate-600 font-mono text-[11px] md:text-[18px] tracking-[2.5em] uppercase px-4 font-black">PROCEDIMIENTO FINAL</p>
                 </div>
@@ -312,10 +314,10 @@ export default function PadrinoPage() {
                   { label: "Protocolos", icon: Scroll }
                 ].map((btn, i) => (
                   <button key={i} className="group flex flex-col items-center justify-center gap-14 p-24 bg-[#0c0e12] border-2 border-slate-950 rounded-[4rem] hover:border-slate-400 hover:bg-slate-900 transition-all shadow-2xl relative overflow-hidden active:scale-95">
-                     <div className="w-20 h-20 rounded-full border border-slate-800 flex items-center justify-center text-slate-600 group-hover:text-white transition-all bg-black group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+                     <div className="w-20 h-20 rounded-full border border-slate-800 flex items-center justify-center text-slate-600 group-hover:text-white transition-all bg-black group-hover:bg-slate-100 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
                         <btn.icon className="w-8 h-8" />
                      </div>
-                     <span className="text-[13px] font-black tracking-[1.2em] text-slate-400 group-hover:text-white uppercase transition-all text-center">{btn.label}</span>
+                     <span className="text-[13px] font-black tracking-[1.2em] text-slate-400 group-hover:text-white uppercase transition-all text-center leading-relaxed">{btn.label}</span>
                      <div className="absolute inset-0 bg-[#cbd5e1]/[0.02] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </button>
                 ))}
@@ -330,7 +332,7 @@ export default function PadrinoPage() {
                   <NextLink href="/comites" className="hover:text-white transition-all border-b border-transparent hover:border-slate-800">Tribunales</NextLink>
                   <NextLink href="/" className="hover:text-white transition-all border-b border-transparent hover:border-slate-800">Sede Central</NextLink>
                </div>
-               <p className="text-[12px] text-slate-800 tracking-[3em] uppercase italic opacity-30 font-black">Justicia Suprema • Lara 2030</p>
+               <p className="text-[12px] text-slate-700 tracking-[3em] uppercase italic opacity-30 font-black">Justicia Suprema • Lara 2030</p>
             </div>
           </footer>
           
