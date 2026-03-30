@@ -22,25 +22,25 @@ function FloatingNav({ onSelect }: { onSelect: (id: string) => void }) {
   ];
 
   return (
-    <div className="fixed bottom-10 right-10 z-[200]">
+    <div className="fixed bottom-10 left-10 z-[200]">
       <AnimatePresence>
         {isOpen && (
-          <div className="absolute bottom-20 right-0 flex flex-col gap-4 items-end">
+          <div className="absolute bottom-16 left-0 flex flex-col gap-3 items-start">
             {options.map((opt, i) => (
               <motion.button
                 key={opt.id}
-                initial={{ opacity: 0, y: 20, x: 20 }}
+                initial={{ opacity: 0, y: 20, x: -20 }}
                 animate={{ opacity: 1, y: 0, x: 0 }}
-                exit={{ opacity: 0, y: 10, x: 10 }}
+                exit={{ opacity: 0, y: 10, x: -10 }}
                 transition={{ delay: i * 0.1 }}
                 onClick={() => {
                   onSelect(opt.id);
                   setIsOpen(false);
                 }}
-                className="flex items-center gap-4 bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-full shadow-[0_10px_30px_rgba(37,99,235,0.4)] transition-all group active:scale-95"
+                className="flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 rounded-full shadow-[0_10px_30px_rgba(37,99,235,0.4)] transition-all group active:scale-95 whitespace-nowrap"
               >
-                <span className="text-[10px] font-black tracking-widest uppercase">{opt.label}</span>
-                <opt.icon className="w-5 h-5" />
+                <opt.icon className="w-4 h-4" />
+                <span className="text-[9px] font-black tracking-widest uppercase">{opt.label}</span>
               </motion.button>
             ))}
           </div>
@@ -50,11 +50,11 @@ function FloatingNav({ onSelect }: { onSelect: (id: string) => void }) {
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-20 h-20 rounded-full flex items-center justify-center transition-all shadow-2xl ${
-          isOpen ? "bg-white text-black" : "bg-blue-600 text-white shadow-[0_0_40px_rgba(37,99,235,0.5)]"
+        className={`w-14 h-14 rounded-full flex items-center justify-center transition-all shadow-2xl ${
+          isOpen ? "bg-white text-black" : "bg-blue-600 text-white shadow-[0_0_30px_rgba(37,99,235,0.5)]"
         }`}
       >
-        {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </motion.button>
     </div>
   );
